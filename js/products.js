@@ -3,15 +3,19 @@
 //elementos HTML presentes.
 
 
-//Funcion que muestra la lista de productos
+//FUNCION QUE MUESTRA LA LISTA DE PRODUCTOS
+//a esta funcion se le pasa como parametro una lista de objetos tipo JSON
+//cada objeto de la lista es un producto
+//cada producto tiene imagen, nombre, cantidad de vendidos, descripcion, moneda y costo
 function showProductsList(productsArray){
-    //Declaro la variable que va a contener el codigo html con la lista de productos
+    //variable que va a contener el codigo html con la lista de productos
     let htmlContentToAppend = "";
-    //Recorro el array que que contendra una lista de objetos en la que cada objeto corresponde a un producto.
+    //FOR QUE RECORRE LA LISTA
     for(let i = 0; i < productsArray.length; i++){
-        //declaro una variable que corresponde al item de la lista por el que esta pasando el for, esta correspondera a un producto
+        // variable que corresponde al objeto (el producto) de la lista por el que esta pasando el for
         let products = productsArray[i];
-        //agrego a la variable que contiene el html los datos del producto 
+        //se agrega a la variable htmlContentToAppend el codigo HTML
+        //este codigo contiene los datos del producto desglosados en una lista
            htmlContentToAppend +=`
            <a href="" class="list-group-item list-group-item-action">
                <div class="row">
@@ -33,7 +37,9 @@ function showProductsList(productsArray){
            `
         }
 
-       //mediante el metodo innerHTML agrego a mi HTML el contenido de la variable htmlContentToAppend que contiene la lista de productos generada en el for anterior
+       //mediante el metodo innerHTML
+       //agrego en el documento HTML el contenido de la variable htmlContentToAppend
+       //este contenido va dentro del contenedor que ya esta preparado para eso en el HTML
        document.getElementById("container-products-list").innerHTML = htmlContentToAppend;
     }
       //el evento DOMContentLoaded, se ejecuta cuando se carga la pagina
@@ -41,7 +47,9 @@ function showProductsList(productsArray){
         //le psao a la funcion getJSONData que va a generar un objeto de tipo JSON la URL correspondiente a la lista productos
         //el objeto de tipo JSON se guarda en resultObj
         getJSONData(PRODUCTS_URL).then(function(resultObj){
-            //si los datos se cargaron correctamente ejecuto la funcion showProductsList que va a mostrar la lista de productos
+            //si los datos se cargaron correctamente
+            //ejecuto la funcion showProductsList y le paso como parametro el objeto JSON
+            //el objeto contiene la lista de productos
          if (resultObj.status === "ok"){
             showProductsList( resultObj.data);
         }

@@ -4,18 +4,23 @@
 
 
 document.addEventListener("DOMContentLoaded", function() {
-    //con este evento hago que cuando se haga click en el boton submit del formulario con id "formulario" se ejecute la funcion validarFormulario
+    //este evendo ejecuta la funcion validarFormulario cuando se apreta el boton "ingresar" del login
        document.getElementById("formulario").addEventListener('submit', validarFormulario); 
   });
   
-  // esta funcion valida que no haya campos vacios tanto en usuario como en contraseña, y si los hay se muestra un alert y un contorno rojo en el area de texto
+  // esta funcion valida que no haya campos vacios tanto en usuario como en contraseña,
+  // y si los hay se muestra un alert y un contorno rojo en el area de texto
   function validarFormulario(evento) {
+    //este evento evita que se envie el formulario al hacer click en el boton
+    //
     evento.preventDefault();
     //obtengo los input de usuario y contraseña mediante su id
     var usuario = document.getElementById('login');
     var clave = document.getElementById('password');
       
-    // si el largo del valor del input es 0, significa que el campo esta vacio y en ese caso muestro el alert y el borde rojo
+    // si el campo de usuario o contraseña estan vacios salgo de la funcion
+    // al salir de la funcion no se ejecuta el submit del formulario
+    // para alertar al usuario muestro un alert y cambio el borde de los input a rojo
     if(usuario.value.length == 0) {
       alert('No has escrito nada en el usuario');
       usuario.style.borderColor="red"
@@ -26,6 +31,9 @@ document.addEventListener("DOMContentLoaded", function() {
       clave.style.borderColor="red"
       return;
     }
-    //si no entra a ningun if, se ejecuta el submit del formulario que me va a llevar a home.html
+
+    //ejecuto el boton del formulario
+    //esta parte solo se va a ejecutar si no se cumplen los if de arriba
+    
     this.submit();
   }
