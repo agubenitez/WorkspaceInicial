@@ -44,8 +44,9 @@ function showProductsList(productsArray){
     }
       //el evento DOMContentLoaded, se ejecuta cuando se carga la pagina
     document.addEventListener("DOMContentLoaded", function(e){
-        //le psao a la funcion getJSONData que va a generar un objeto de tipo JSON la URL correspondiente a la lista productos
-        //el objeto de tipo JSON se guarda en resultObj
+                 //le psao a la funcion getJSONData la URL con la lista de productos 
+                // la funcion genera un objeto de tipo JSON
+               //el objeto JSON se guarda en resultObj
         getJSONData(PRODUCTS_URL).then(function(resultObj){
             //si los datos se cargaron correctamente
             //ejecuto la funcion showProductsList y le paso como parametro el objeto JSON
