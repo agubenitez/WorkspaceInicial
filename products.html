@@ -24,14 +24,51 @@
         <a class="py-2 d-none d-md-inline-block" href="cart.html">Mi carrito</a>
       </div>
     </nav>
+
+
     <!-- Titulo -->
     <div class="text-center p-4">
       <h2>Productos</h2>
       <p class="lead">Verás aquí todos los productos del sitio.</p>
   </div>
+
+  <div class="container">
+  <div class="row">
+   
+    <div class="col text-right">
+      <label for="exampleFormControlSelect1">Ordenar por:</label>
+      <div class="btn-group">
+      <select class="form-control" id="OrdenProducts">
+        <option>Precio Ascendente</option>
+        <option>Precio Descendente</option>
+        <option>Relevancia Descendente</option>
+       
+      </select>
+    </div>
+    </div>
+    
+    <!-- <div class="col text-right">
+        <div class="btn-group btn-group-toggle mb-4" data-toggle="buttons">
+            <label class="btn btn-light active" id="sortAsc" >
+                <input type="radio" name="options" autocomplete="off" checked>A-Z
+            </label>
+            <label class="btn btn-light" id="sortDesc" >
+                <input type="radio" name="options" autocomplete="off">Z-A
+            </label>
+            <label class="btn btn-light" id="sortByCount" >
+                <input type="radio" name="options" autocomplete="off"><i class="fas fa-sort-amount-down mr-1"></i>Cant.
+            </label>
+        </div>
+    </div> -->
+
+</div>
+
   <!-- Lista -->
+  <div class="row">
     <div id="container-products-list"class="container p-5">
     </div>
+  </div>
+    
     <!-- Footer -->
     <footer class="text-muted bg-light">
       <div class="container">
