@@ -1,14 +1,16 @@
 //Función que se ejecuta una vez que se haya lanzado el evento de
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
+
+//variables que van a definir el orden de la lista
 const ORDER_ASC_BY_PRICE = "ASC";
 const ORDER_DESC_BY_PRICE = "DESC";
 const ORDER_DESC_BY_SOLDCOUNT = "SOLDCOUNT";
 
+//en esta variable se va a guardar la lista de objetos que se esta mostrando en pantalla
 var currentProducts = [];
+//en esta variable se va a guardar el orden en el que se esta mostrando la lista en pantalla
 var currentSortCriteria = undefined;
-var minCount = undefined;
-var maxCount = undefined;
 
 //FUNCION PARA ORDENAR LISTA DE PRODUCTOS
 function sortProducts(criteria, array) {
@@ -19,7 +21,7 @@ function sortProducts(criteria, array) {
       if (parseInt(a.cost) < parseInt(b.cost)) { return -1; }
       if (parseInt(a.cost) > parseInt(b.cost)) { return 1; }
       return 0;
-    });
+    });s
   } else if (criteria === ORDER_DESC_BY_PRICE) {
     result = array.sort(function (a, b) {
       if (parseInt(a.cost) > parseInt(b.cost)) { return -1; }
@@ -37,9 +39,9 @@ function sortProducts(criteria, array) {
 }
 
 //FUNCION QUE MUESTRA LA LISTA DE PRODUCTOS
-//a esta funcion se le pasa como parametro una lista de objetos tipo JSON
-//cada objeto de la lista es un producto
-//cada producto tiene imagen, nombre, cantidad de vendidos, descripcion, moneda y costo
+  //crea una lista a partir de un objetos tipo JSON
+  //cada objeto de la lista es un producto
+  //cada producto tiene imagen, nombre, cantidad de vendidos, descripcion, moneda y costo
 function showProductsList() {
   //variable que va a contener el codigo html con la lista de productos
   let htmlContentToAppend = "";
@@ -79,22 +81,18 @@ function showProductsList() {
 // funcion para ordenar y mostrar lista de productos
 function sortAndShowProducts(sortCriteria, productsArray) {
   currentSortCriteria = sortCriteria;
-
+  // si se pasa por parametro una lista, 
+    //esta se guarda en currentProduct
+    
   if (productsArray != undefined) {
     currentProducts = productsArray;
   }
-
-  currentProducts = productsArray;
-
+  //ordeno la lista guardada en currentProducts
   currentProducts = sortProducts(currentSortCriteria, currentProducts);
 
-  //Muestro las categorías ordenadas
   showProductsList();
 
 }
-
-
-
 
 //el evento DOMContentLoaded, se ejecuta cuando se carga la pagina
 document.addEventListener("DOMContentLoaded", function (e) {
@@ -111,24 +109,25 @@ document.addEventListener("DOMContentLoaded", function (e) {
   });
   //ejecuto un evento cada vez que se hace click en el elemento option que 
   //contiene las opciones de orden
-     document.getElementById("formOrdenarProductos").addEventListener("click", function(){
-       //creo una variable que contiene el elemento option con las opciones posibles
-    var formOrdenProd  = document.getElementById("formOrdenarProductos")
-    //creo una variable que contiene el valor de cada opcion definido en el html
-   var valorActual = formOrdenProd.value
-  //dependiendo la opcion que seleccione el usuario en el elemento option 
-  //ejecuto la opcion correspondiente para ordenar la lista
-if(valorActual==1){
-    sortAndShowProducts(ORDER_ASC_BY_PRICE,currentProducts)
-}
-if(valorActual==2){
-    sortAndShowProducts(ORDER_DESC_BY_PRICE,currentProducts)
-}
-if(valorActual==3){
-  sortAndShowProducts(ORDER_DESC_BY_SOLDCOUNT,currentProducts)
-}
+  document.getElementById("formOrdenarProductos").addEventListener("click", function () {
+    //creo una variable que contiene el elemento option con las opciones posibles
+    var formOrdenProd = document.getElementById("formOrdenarProductos")
+    //creo una variable que contiene el valor de cada select definido en el html
+    //uso esta variable para apuntar a la opcion que selecciona el usuario
+    var valorActual = formOrdenProd.value
+    //dependiendo la opcion que seleccione el usuario 
+    //ejecuto la funcion correspondiente para ordenar la lista
+    if (valorActual == 1) {
+      sortAndShowProducts(ORDER_ASC_BY_PRICE, currentProducts)
+    }
+    if (valorActual == 2) {
+      sortAndShowProducts(ORDER_DESC_BY_PRICE, currentProducts)
+    }
+    if (valorActual == 3) {
+      sortAndShowProducts(ORDER_DESC_BY_SOLDCOUNT, currentProducts)
+    }
 
-});
+  });
 
 
 });
