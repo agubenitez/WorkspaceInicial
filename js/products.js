@@ -33,7 +33,6 @@ function sortProducts(criteria, array) {
       return 0;
     });
   }
-
   return result;
 }
 
@@ -107,9 +106,30 @@ document.addEventListener("DOMContentLoaded", function (e) {
     //ejecuto la funcion showProductsList y le paso como parametro el objeto JSON
     //el objeto contiene la lista de productos
     if (resultObj.status === "ok") {
-      sortAndShowProducts(ORDER_DESC_BY_SOLDCOUNT, resultObj.data);
+      sortAndShowProducts(ORDER_ASC_BY_PRICE, resultObj.data);
     }
   });
+  //ejecuto un evento cada vez que se hace click en el elemento option que 
+  //contiene las opciones de orden
+     document.getElementById("formOrdenarProductos").addEventListener("click", function(){
+       //creo una variable que contiene el elemento option con las opciones posibles
+    var formOrdenProd  = document.getElementById("formOrdenarProductos")
+    //creo una variable que contiene el valor de cada opcion definido en el html
+   var valorActual = formOrdenProd.value
+  //dependiendo la opcion que seleccione el usuario en el elemento option 
+  //ejecuto la opcion correspondiente para ordenar la lista
+if(valorActual==1){
+    sortAndShowProducts(ORDER_ASC_BY_PRICE,currentProducts)
+}
+if(valorActual==2){
+    sortAndShowProducts(ORDER_DESC_BY_PRICE,currentProducts)
+}
+if(valorActual==3){
+  sortAndShowProducts(ORDER_DESC_BY_SOLDCOUNT,currentProducts)
+}
+
+});
+
 
 });
 
