@@ -6,7 +6,7 @@ const PRODUCT_INFO_URL = "https://japdevdep.github.io/ecommerce-api/product/5678
 const PRODUCT_INFO_COMMENTS_URL = "https://japdevdep.github.io/ecommerce-api/product/5678-comments.json";
 const CART_INFO_URL = "https://japdevdep.github.io/ecommerce-api/cart/987.json";
 const CART_BUY_URL = "https://japdevdep.github.io/ecommerce-api/cart/buy.json";
-
+const navBar = document.getElementById("nav")
 var showSpinner = function(){
   document.getElementById("spinner-wrapper").style.display = "block";
 }
@@ -44,4 +44,19 @@ var getJSONData = function(url){
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
 document.addEventListener("DOMContentLoaded", function(e){
+
+//usando el id del nav cargo el contenido, incluyendo el usuario que esta logeado
+ let user = localStorage.getItem("user")
+navBar.innerHTML += 
+`        
+<div class="container d-flex flex-column flex-md-row justify-content-between">
+<a class="py-2 d-none d-md-inline-block" href="index.html">Inicio</a>
+<a class="py-2 d-none d-md-inline-block" href="categories.html">Categorías</a>
+<a class="py-2 d-none d-md-inline-block" href="products.html">Productos</a>
+<a class="py-2 d-none d-md-inline-block" href="sell.html">Vender</a>
+<a class="py-2 d-none d-md-inline-block" href="cart.html">Mi carrito</a>
+
+<a class="py-2 d-none d-md-inline-block" href=""><img id="loguser"src="img/loguser.png" alt="">`+user+`</a>
+</div>
+`
 });

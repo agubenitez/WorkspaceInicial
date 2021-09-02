@@ -7,7 +7,7 @@ const ORDER_ASC_BY_PRICE = "ASC";
 const ORDER_DESC_BY_PRICE = "DESC";
 const ORDER_DESC_BY_SOLDCOUNT = "SOLDCOUNT";
 
-//en esta variable se va a guardar la lista de objetos que se esta mostrando en pantalla
+//en esta variable se va a guardar la lista de productos que se esta mostrando en pantalla
 var currentProducts = [];
 //en esta variable se va a guardar el orden en el que se esta mostrando la lista en pantalla
 var currentSortCriteria = undefined;
@@ -15,19 +15,25 @@ var currentSortCriteria = undefined;
 //FUNCION PARA ORDENAR LISTA DE PRODUCTOS
 function sortProducts(criteria, array) {
   let result = [];
-  //si se ordena en orden ascendiente por precio
+  //dependiendo el criterio de orden que se pase por parametro,
+  //haciendo uso de "sort", 
+  //se ordena la lista pasada por parametro, con el criterio correspondiente
+
+  //ORDEN ASCENDIENTE POR PRECIO
   if (criteria === ORDER_ASC_BY_PRICE) {
     result = array.sort(function (a, b) {
       if (parseInt(a.cost) < parseInt(b.cost)) { return -1; }
       if (parseInt(a.cost) > parseInt(b.cost)) { return 1; }
       return 0;
-    });s
+    });
+   //ORDEN DESCENDIENTE POR PRECIO
   } else if (criteria === ORDER_DESC_BY_PRICE) {
     result = array.sort(function (a, b) {
       if (parseInt(a.cost) > parseInt(b.cost)) { return -1; }
       if (parseInt(a.cost) < b.name) { return 1; }
       return 0;
     });
+   //ORDEN DESCENDIENTE POR RELEVANCIA
   } else if (criteria === ORDER_DESC_BY_SOLDCOUNT) {
     result = array.sort(function (a, b) {
       if (parseInt(a.soldCount) > parseInt(b.soldCount)) { return -1; }
@@ -46,9 +52,17 @@ function showProductsList() {
   //variable que va a contener el codigo html con la lista de productos
   let htmlContentToAppend = "";
   //FOR QUE RECORRE LA LISTA
+  //la lista que se recorre es currentProducts, que corresponde a la lista que se guardo
+  //al ejecutarse la funcion sortAndShowProducts
+  //siempre que se cargue la pagina por primera vez se va a ejecutar sortAndShowProducts
+  //esta funcion va currentProducts
+  //por lo tanto no es necesario hacer ninguna validacion a currentProducts 
+  //asi como tampoco pasarle a showProductsList algun parametro
+  
   for (let i = 0; i < currentProducts.length; i++) {
     // variable que corresponde al objeto (el producto) de la lista por el que esta pasando el for
     let products = currentProducts[i];
+
     //se agrega a la variable htmlContentToAppend el codigo HTML
     //este codigo contiene los datos del producto desglosados en una lista
     htmlContentToAppend += `
@@ -59,7 +73,7 @@ function showProductsList() {
                     </div>
                    <div class="col">
                        <div class="d-flex w-100 justify-content-between">
-                          <h4 class="mb-1">`+ products.name + `</h4>
+                          <h4 class="mb-1">`+ products.name +`</h4>
                          <small class="text-muted">` + products.soldCount + ` Vendidos</small>
                        </div>
                     <div class="d-flex w-100 justify-content-between">
@@ -118,17 +132,23 @@ document.addEventListener("DOMContentLoaded", function (e) {
     //dependiendo la opcion que seleccione el usuario 
     //ejecuto la funcion correspondiente para ordenar la lista
     if (valorActual == 1) {
-      sortAndShowProducts(ORDER_ASC_BY_PRICE, currentProducts)
+      //este if es para que no se cargue la lista cada vez que se hace click en el boton para ordenar
+      //el orden tiene que ser distinto al que ya se esta mostrando en pantalla
+           if(currentSortCriteria!=ORDER_ASC_BY_PRICE){
+       sortAndShowProducts(ORDER_ASC_BY_PRICE, currentProducts)
+      }
     }
     if (valorActual == 2) {
-      sortAndShowProducts(ORDER_DESC_BY_PRICE, currentProducts)
+      if(currentSortCriteria!=ORDER_DESC_BY_PRICE){
+        sortAndShowProducts(ORDER_DESC_BY_PRICE, currentProducts)
+       }
     }
     if (valorActual == 3) {
-      sortAndShowProducts(ORDER_DESC_BY_SOLDCOUNT, currentProducts)
+      if(currentSortCriteria!=ORDER_DESC_BY_SOLDCOUNT){
+        sortAndShowProducts(ORDER_DESC_BY_SOLDCOUNT, currentProducts)
+       }   
     }
-
   });
-
 
 });
 

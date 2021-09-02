@@ -34,6 +34,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     //ejecuto el boton del formulario
     //esta parte solo se va a ejecutar si no se cumplen los if de arriba
-    
+
+    localStorage.setItem("user", usuario.value)
     this.submit();
   }
