@@ -40,13 +40,14 @@ var getJSONData = function(url){
     });
 }
 
-//Función que se ejecuta una vez que se haya lanzado el evento de
-//que el documento se encuentra cargado, es decir, se encuentran todos los
-//elementos HTML presentes.
+
+//evento que se ejecuta al cargar la pagina
 document.addEventListener("DOMContentLoaded", function(e){
 
-//usando el id del nav cargo el contenido, incluyendo el usuario que esta logeado
- let user = localStorage.getItem("user")
+ //obtengo el usuario logeado, que guarde previamente en localstore
+let user = localStorage.getItem("user")
+
+//cargo el contenido de la barra de navegacion en todas los html que contienen una
 navBar.innerHTML += 
 `        
 <div class="container d-flex flex-column flex-md-row justify-content-between">

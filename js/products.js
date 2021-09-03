@@ -52,13 +52,13 @@ function showProductsList() {
   //variable que va a contener el codigo html con la lista de productos
   let htmlContentToAppend = "";
   //FOR QUE RECORRE LA LISTA
-  //la lista que se recorre es currentProducts, que corresponde a la lista que se guardo
-  //al ejecutarse la funcion sortAndShowProducts
-  //siempre que se cargue la pagina por primera vez se va a ejecutar sortAndShowProducts
-  //esta funcion va currentProducts
-  //por lo tanto no es necesario hacer ninguna validacion a currentProducts 
-  //asi como tampoco pasarle a showProductsList algun parametro
-  
+    //la lista que se recorre es currentProducts, que corresponde a la lista que se guardo
+    //al ejecutarse la funcion sortAndShowProducts
+    //siempre que se cargue la pagina por primera vez se va a ejecutar sortAndShowProducts
+    //esta funcion va currentProducts
+    //por lo tanto no es necesario hacer ninguna validacion a currentProducts 
+    //asi como tampoco pasarle a showProductsList algun parametro
+    
   for (let i = 0; i < currentProducts.length; i++) {
     // variable que corresponde al objeto (el producto) de la lista por el que esta pasando el for
     let products = currentProducts[i];
@@ -133,7 +133,9 @@ document.addEventListener("DOMContentLoaded", function (e) {
     //ejecuto la funcion correspondiente para ordenar la lista
     if (valorActual == 1) {
       //este if es para que no se cargue la lista cada vez que se hace click en el boton para ordenar
-      //el orden tiene que ser distinto al que ya se esta mostrando en pantalla
+     
+      //el orden seleccionado tiene que ser distinto al que ya se esta mostrando en pantalla
+      //para que se ejecute la funcion
            if(currentSortCriteria!=ORDER_ASC_BY_PRICE){
        sortAndShowProducts(ORDER_ASC_BY_PRICE, currentProducts)
       }

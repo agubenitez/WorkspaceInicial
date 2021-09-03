@@ -32,9 +32,12 @@ document.addEventListener("DOMContentLoaded", function() {
       return;
     }
 
+ 
+    
+    //guardo el usuario que se esta logeando en localstorage
+    localStorage.setItem("user", usuario.value)
+    
     //ejecuto el boton del formulario
     //esta parte solo se va a ejecutar si no se cumplen los if de arriba
-
-    localStorage.setItem("user", usuario.value)
     this.submit();
   }
