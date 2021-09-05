@@ -6,6 +6,8 @@
 const ORDER_ASC_BY_PRICE = "ASC";
 const ORDER_DESC_BY_PRICE = "DESC";
 const ORDER_DESC_BY_SOLDCOUNT = "SOLDCOUNT";
+var minPrecio = undefined;
+var maxPrecio = undefined;
 
 //en esta variable se va a guardar la lista de productos que se esta mostrando en pantalla
 var currentProducts = [];
@@ -63,7 +65,16 @@ function showProductsList() {
     // variable que corresponde al objeto (el producto) de la lista por el que esta pasando el for
     let products = currentProducts[i];
 
-    //se agrega a la variable htmlContentToAppend el codigo HTML
+
+
+    //este if aplica los filtros a la lista
+    //si el precio del producto no esta en el rango de minPrecio y maxPrecio este no se agrega a la lista
+    //y el for continua pasando al siguiente producto
+  
+    if (((minPrecio == undefined) || (minPrecio != undefined && parseInt(products.cost) >= minPrecio)) &&
+    ((maxPrecio == undefined) || (maxPrecio != undefined && parseInt(products.cost) <= maxPrecio))){
+    
+      //se agrega a la variable htmlContentToAppend el codigo HTML
     //este codigo contiene los datos del producto desglosados en una lista
     htmlContentToAppend += `
            <a href="" class="list-group-item list-group-item-action">
@@ -85,6 +96,7 @@ function showProductsList() {
            </a>
            `
   }
+}
   //mediante el metodo innerHTML
   //agrego en el documento HTML el contenido de la variable htmlContentToAppend
   //este contenido va dentro del contenedor que ya esta preparado para eso en el HTML
@@ -105,7 +117,6 @@ function sortAndShowProducts(sortCriteria, productsArray) {
   currentProducts = sortProducts(currentSortCriteria, currentProducts);
 
   showProductsList();
-
 }
 
 //el evento DOMContentLoaded, se ejecuta cuando se carga la pagina
@@ -152,5 +163,45 @@ document.addEventListener("DOMContentLoaded", function (e) {
     }
   });
 
+  //al hacer click en el boton filtrar se guardan los valores de los input de min y max 
+  //estos valores se guardan en las variables minPrecio maxPrecio para luego usarse en la funcion showProductsList
+  document.getElementById("botonFiltroPrecio").addEventListener("click", function(){
+    //Obtengo el mínimo y máximo de los intervalos para filtrar por cantidad
+    //de productos por categoría.
+    minPrecio = document.getElementById("precioMin").value;
+    maxPrecio = document.getElementById("precioMax").value;
+  
+    if ((minPrecio != undefined) && (minPrecio != "") && (parseInt(minPrecio)) >= 0){
+      minPrecio = parseInt(minPrecio);
+    }
+    else{
+      minPrecio = undefined;
+    }
+  
+    if ((maxPrecio != undefined) && (maxPrecio != "") && (parseInt(maxPrecio)) >= 0){
+      maxPrecio = parseInt(maxPrecio);
+    }
+    else{
+      maxPrecio = undefined;
+    }
+  
+    showProductsList();
+  });
+//Este evento apunta al boton limpiar
+//al hacer click en limpiar se quitan los valores de minPrecio y maxPrecio
+//se limpian los input
+//se vuelve a mostrar la lista completa
+  document.getElementById("limpiarFiltros").addEventListener("click", function(){
+    document.getElementById("precioMin").value = "";
+    document.getElementById("precioMax").value = "";
+
+    minPrecio = undefined;
+    maxPrecio = undefined;
+
+    showProductsList();
 });
+  
+
+});
+
 

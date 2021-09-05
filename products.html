@@ -38,7 +38,33 @@
         </select>
     </div>
     </div>
+  
 </div>
+
+<!-- Formulario de filtros -->
+  <div class="row justify-content-end">
+    <div class="col-md-6"></div>
+      <div class="col-md-6 col-sm-12 mb-1 container">
+        <div class="row container p-0 m-0">
+          <div class="col">
+            <p class="font-weight-normal text-right my-2">Precio:</p>
+          </div>
+          <div class="col">
+            <input class="form-control" type="number" placeholder="min." id="precioMin">
+          </div>
+          <div class="col">
+            <input class="form-control" type="number" placeholder="máx." id="precioMax">
+          </div>
+          <div class="col-3 p-0">
+            <div class="btn-group" role="group">
+              <button class="btn btn-light btn-block" id="botonFiltroPrecio">Filtrar</button>
+              <button class="btn btn-light btn-block" id="limpiarFiltros">Limpiar </button>
+             </div>
+          </div>
+        </div>
+      </div>
+  </div>
+
 
   <!-- Lista -->
   <div class="row">
