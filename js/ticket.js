@@ -1,5 +1,6 @@
 const tbody = document.getElementById("tbody");
 const dire = document.getElementById("dire");
+const trTotal = document.getElementById("total")
 var currentTicket = [];
 var cant=1;
 var burguers = [
@@ -53,6 +54,13 @@ var burguers = [
         "cost": 50,
         "currency": "$"
     },
+    {
+        "name": "Descuento",
+        "id": "descuento",
+        "description": "",
+        "cost": "-15%",
+        "currency": "$"
+    },
     
 ]
 
@@ -64,9 +72,7 @@ function agregarProd(id) {
 let htmlContentToAppend = "";
 var precioTotal;
 for (let i = 0; i < burguers.length; i++) {
-    let burguer = burguers[i];
-    
-  
+    let burguer = burguers[i]; 
 
  if(burguer.id === id){  
 htmlContentToAppend += 
@@ -78,16 +84,34 @@ htmlContentToAppend +=
     </tr>
 `
 currentTicket.push(burguer)
-
-
 }
-
-
 }
-
 tbody.innerHTML += htmlContentToAppend;
+total = sumarTotal(currentTicket)
+
+trTotal.innerHTML = `                    
+<td></td>
+<td>TOTAL</td>
+<td id="total">$`+total+`</td>`
 console.log(currentTicket)
 }
+
+function sumarTotal(array){
+var total=0
+    for (let i = 0; i < array.length; i++) {
+        var a = array[i]
+        var costo = parseInt(a.cost)
+        total = total + costo
+
+        if(a.id == "descuento"){
+            total = total * 0.85
+        }
+    }
+    return (total);
+    
+}
+
+
 
 function cofirmar(){
     for (let i = 0; i < currentTicket.length; i++) {
@@ -121,6 +145,7 @@ document.addEventListener("DOMContentLoaded", function(e){
       document.getElementById("nuevo").addEventListener("click", function () {
         currentTicket=[]
         tbody.innerHTML = ""
+        trTotal.innerHTML = ""
  
       });
 

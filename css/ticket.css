@@ -47,9 +47,7 @@ img {
     width: inherit;
 }
 
-.formulario{
 
- }
 @media print {
     .oculto-impresion,
     .oculto-impresion * {
