@@ -8,7 +8,8 @@ var burguers = [
         "name": "Ant-Man",
         "id": "am",
         "description": "",
-        "cost": 210,
+        "cost": 245,
+        "costInterface": 245,
         "currency": "$"
        
     },
@@ -16,35 +17,40 @@ var burguers = [
         "name": "Hukl",
         "id": "hk",
         "description": "",
-        "cost": 300,
+        "cost": 355,
+        "costInterface": 355,
         "currency": "$"
     },
     {
         "name": "Capitan America",
         "id": "ca",
         "description": "",
-        "cost": 270,
+        "cost": 315,
+        "costInterface": 315,
         "currency": "$"
     },
     {
         "name": "Iron Man",
         "id": "im",
         "description": "",
-        "cost": 310,
+        "cost": 375,
+        "costInterface": 375,
         "currency": "$"
     },
     {
         "name": "4 Fantastic",
         "id": "4f",
         "description": "",
-        "cost": 320,
+        "cost": 365,
+        "costInterface": 365,
         "currency": "$"
     },
     {
         "name": "Marvel",
         "id": "m",
         "description": "",
-        "cost": 450,
+        "cost": 525,
+        "costInterface": 525,
         "currency": "$"
     },
     {
@@ -52,13 +58,15 @@ var burguers = [
         "id": "br",
         "description": "",
         "cost": 50,
+        "costInterface": 50,
         "currency": "$"
     },
     {
-        "name": "Descuento",
+        "name": "15% de descuento!!!",
         "id": "descuento",
         "description": "",
-        "cost": "-15%",
+        "cost": 0,
+        "costInterface": "- 15% !!! ",
         "currency": "$"
     },
     
@@ -80,6 +88,7 @@ htmlContentToAppend +=
     <tr>
     <td class="cantidad">`+ cant + `</td>
     <td class="producto">`+burguer.name+` </td>
+    
     <td class="precio">`+burguer.currency+burguer.cost+`</td>
     </tr>
 `
@@ -104,7 +113,8 @@ var total=0
         total = total + costo
 
         if(a.id == "descuento"){
-            total = total * 0.85
+            total -= a.cost
+            total = Math.round(total * 0.85)
         }
     }
     return (total);
@@ -149,12 +159,28 @@ document.addEventListener("DOMContentLoaded", function(e){
  
       });
 
-      document.getElementById("agregarDir").addEventListener("click", function () {
-        document.getElementById("dire").innerHTML = '';
-        var dire = document.getElementById("dire");
-        var direccion = document.createTextNode(document.getElementById("nombreDir").value)
+      document.getElementById("botonDir").addEventListener("click", function () {
+        document.getElementById("parrafoDir").innerHTML = '';
+        var dire = document.getElementById("parrafoDir");
+        var direccion = document.createTextNode(document.getElementById("inputDir").value)
         dire.appendChild(direccion)
         
       });
+      document.getElementById("botonNombre").addEventListener("click", function () {
+        document.getElementById("parrafoNombre").innerHTML = '';
+        var parrafo = document.getElementById("parrafoNombre");
+        var contenido = document.createTextNode(document.getElementById("inputNombre").value)
+        parrafo.appendChild(contenido)
+        console.log(contenido)
+        
+      });
+      document.getElementById("botonTelefono").addEventListener("click", function () {
+        document.getElementById("parrafoTelefono").innerHTML = '';
+        var dire = document.getElementById("parrafoTelefono");
+        var direccion = document.createTextNode(document.getElementById("inputTelefono").value)
+        dire.appendChild(direccion)
+        
+      });
+   
 
 });
