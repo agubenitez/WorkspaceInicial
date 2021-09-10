@@ -97,11 +97,9 @@ function showComments(commentsInfo){
         <span class="fa fa-star checked"></span>
         </div>
         `
-
       }
       `
         `
-
 }
 }
 
@@ -154,12 +152,90 @@ document.addEventListener("DOMContentLoaded", function(e){
         }
       });
       document.getElementById("buttonEnviar").addEventListener("click", function(){
-          
-        if(radio5.checked == true){console.log("1 ESTRELLA")}
+        let user = localStorage.getItem("user")
+        var textComment = document.getElementById("textComment").value
+        if(textComment==undefined){
+          inputNotas=""
+          }
+        rowComentarios.innerHTML += `
+        <div class="col-8">
+        <div class="list-group">
+          <a  class="list-group-item list-group-item-action">
+            <div class="d-flex w-100 justify-content-between">
+              <h5 class="mb-1">`+user+`</h5>
+              <small>12/12</small>
+            </div>
+            <p class="mb-1">`+textComment+`</p>
+            </a>
+        </div>
+      </div>      
+    `;  if(radio5.checked == true){
+        rowComentarios.innerHTML += 
+        `
+      <div class="col-4">
+      <span class="fa fa-star checked"></span>
+      <span class="fa fa-star "></span>
+      <span class="fa fa-star  "></span>
+      <span class="fa fa-star"></span>
+      <span class="fa fa-star"></span>
+      </div>
+      `}
+      if(radio4.checked == true){
+        rowComentarios.innerHTML += 
+        `
+        <div class="col-4">
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star  "></span>
+        <span class="fa fa-star"></span>
+        <span class="fa fa-star"></span>
+        </div>
+        `
+
+      }
+      if(radio3.checked == true){
+        rowComentarios.innerHTML += 
+        `
+        <div class="col-4">
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked "></span>
+        <span class="fa fa-star"></span>
+        <span class="fa fa-star"></span>
+        </div>
+        `
+
+      }
+      if(radio2.checked == true){
+        rowComentarios.innerHTML += 
+        `
+        <div class="col-4">
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star  checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star"></span>
+        </div>
+        `
+
+      }
+      if(radio1.checked == true){
+        rowComentarios.innerHTML += 
+        `
+        <div class="col-4">
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked "></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        </div>
+        `
+
+      }
+   
+      if(radio5.checked == true){console.log("1 ESTRELLA")}
         if(radio4.checked == true){console.log("2 ESTRELLA")}
-
         if(radio3.checked == true){console.log("3 ESTRELLA")}
-
         if(radio2.checked == true){console.log("4 ESTRELLA")}
         if(radio1.checked == true){console.log("5 ESTRELLA")}
 
