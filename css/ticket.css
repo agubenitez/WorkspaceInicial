@@ -46,7 +46,9 @@ img {
     max-width: inherit;
     width: inherit;
 }
-
+.sinCss{
+    all: none;
+}
 
 @media print {
     .oculto-impresion,

@@ -2,9 +2,10 @@
 <html>
     <head>
         <link rel="stylesheet" href="css/ticket.css">
-     
+        <link href="css/bootstrap.min.css" rel="stylesheet">
     </head>
     <body>
+        <!-- TICKET -->
         <div class="ticket ">
             <img
                 src="img/logoMarvel.jpg"
@@ -26,14 +27,14 @@
                     </tr>
                 </thead>
                 <tbody id="tbody">
-                    
-                   
-               
+
+
+
                </tbody>
 
                <tfoot>
 
-                 
+
                 <tr id="total">
 
                 </tr>
@@ -43,56 +44,82 @@
             </table>
             <p class="centrado">¡GRACIAS POR SU COMPRA!</p>
 
-        
         </div>
-<div class=" oculto-impresion">        
+        <!-- FIN TICKET -->
+
+<!-- CREAR TICKET -->
 <button class="oculto-impresion" onclick="imprimir()">Imprimir</button>
 <button id="nuevo">Nuevo ticket</button>
 
-<div class="formulario ">
+
+
+
+<div class=" conteiner  oculto-impresion">
+    <div class="row mt-5">
+<div class="col">
     <h3>Nuevo Pedido:</h3>
-    <p>
+</div>
+</div>
+<div class="row">
+    <div class="col border">
         <span style="font-size:16px">ID BURGUER:</span>
-        <input id="idProd" type="text"> <button id="agregar">Agregar</button>
+        <input id="idProd" type="text">
     </p>
     <p>
-        <span style="font-size:16px">DIRECCION:</span>
-        <input id="inputDir" type="text"> <button id="botonDir">Agregar</button>
-       
+     <textarea id="inputNotas" class="form-control" aria-label="With textarea" placeholder="NOTAS..."></textarea>
+     <button id="agregar">Agregar</button>
     </p>
+    </div>
+    <div class="col border">
+        <p>
+            <span style="font-size:16px">DIRECCION:</span>
+            <input id="inputDir" type="text"> <button id="botonDir">Agregar</button>
+    
+        </p>
+
+    </div>
+   
+    <div class="col border">
+        <p>
+            <span style="font-size:16px">TELEFONO:</span>
+            <input id="inputTelefono" type="text"> <button id="botonTelefono">Agregar</button>
+           </p>
+    </div>
+   <div class="col border">
+
     <p> <span style="font-size:16px">NOMBRE:</span>
         <input id="inputNombre" type="text"> <button id="botonNombre">Agregar</button>
        </p>
 
-       <p>
-        <span style="font-size:16px">TELEFONO:</span>
-        <input id="inputTelefono" type="text"> <button id="botonTelefono">Agregar</button>
-       </p>
+   </div>
+   
+
+    
 
 </div>
+</div>
 
-<div>
-    <br>
-    <br>
-    <br>
-    <br>
+<!-- FIN CREAR TICKET -->
+<!-- REFERENCIAS -->
+<div class=" mt-5  oculto-impresion">
+  
     <p style="font-size:16px">
 
-        Ant-Man: am
+        Ant-Man: a
         <br>
 
-        Hukl: hk
-
-        <br>
-
-        Capitan America: ca
-
-        <br>
-        Iron Man: im
+        Hukl: h
 
         <br>
 
-        4 Fantastic: 4f
+        Capitan America: c
+
+        <br>
+        Iron Man: i
+
+        <br>
+
+        4 Fantastic: 4
 
         <br>
 
@@ -100,16 +127,16 @@
 
         <br>
 
-        Bravas/Aros: br 
-        
+        Bravas: br <br>
+
+        Aros: ar
+
         <br>
 
-
-        DESCUENTO: descuento
-
+        DESCUENTO: d
     </p>
 </div>
-</div>
+
 
 
 

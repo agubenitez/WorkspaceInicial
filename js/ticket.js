@@ -6,7 +6,7 @@ var cant=1;
 var burguers = [
     {
         "name": "Ant-Man",
-        "id": "am",
+        "id": "a",
         "description": "",
         "cost": 245,
         "costInterface": 245,
@@ -15,7 +15,7 @@ var burguers = [
     },
     {
         "name": "Hukl",
-        "id": "hk",
+        "id": "h",
         "description": "",
         "cost": 355,
         "costInterface": 355,
@@ -23,7 +23,7 @@ var burguers = [
     },
     {
         "name": "Capitan America",
-        "id": "ca",
+        "id": "c",
         "description": "",
         "cost": 315,
         "costInterface": 315,
@@ -31,7 +31,7 @@ var burguers = [
     },
     {
         "name": "Iron Man",
-        "id": "im",
+        "id": "i",
         "description": "",
         "cost": 375,
         "costInterface": 375,
@@ -39,7 +39,7 @@ var burguers = [
     },
     {
         "name": "4 Fantastic",
-        "id": "4f",
+        "id": "4",
         "description": "",
         "cost": 365,
         "costInterface": 365,
@@ -54,7 +54,15 @@ var burguers = [
         "currency": "$"
     },
     {
-        "name": "Bravas/Aros",
+        "name": "Aros",
+        "id": "ar",
+        "description": "",
+        "cost": 50,
+        "costInterface": 50,
+        "currency": "$"
+    },
+    {
+        "name": "Bravas",
         "id": "br",
         "description": "",
         "cost": 50,
@@ -76,7 +84,11 @@ function imprimir() {
     window.print();
 }
 
-function agregarProd(id) {
+function agregarProd(id, notas) {
+    if(notas==undefined){
+    notas=""
+    }
+    console.log(notas)
 let htmlContentToAppend = "";
 var precioTotal;
 for (let i = 0; i < burguers.length; i++) {
@@ -87,13 +99,17 @@ htmlContentToAppend +=
 `
     <tr>
     <td class="cantidad">`+ cant + `</td>
-    <td class="producto">`+burguer.name+` </td>
-    
+    <td class="producto">`+burguer.name+`   <br> `+notas+`  </td>
+
     <td class="precio">`+burguer.currency+burguer.cost+`</td>
     </tr>
+
 `
+
 currentTicket.push(burguer)
 }
+
+
 }
 tbody.innerHTML += htmlContentToAppend;
 total = sumarTotal(currentTicket)
@@ -103,7 +119,7 @@ trTotal.innerHTML = `
 <td>TOTAL</td>
 <td id="total">$`+total+`</td>`
 console.log(currentTicket)
-}
+}//fin agregar prod
 
 function sumarTotal(array){
 var total=0
@@ -148,7 +164,11 @@ document.addEventListener("DOMContentLoaded", function(e){
 
     document.getElementById("agregar").addEventListener("click", function () {
         idProd= document.getElementById("idProd").value
-        agregarProd(idProd)
+        inputNotas = document.getElementById("inputNotas").value
+        if(inputNotas==undefined){
+            inputNotas=""
+            }
+        agregarProd(idProd,inputNotas)
  
       });
 
