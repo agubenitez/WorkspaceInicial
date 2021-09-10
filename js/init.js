@@ -49,15 +49,47 @@ let user = localStorage.getItem("user")
 
 //cargo el contenido de la barra de navegacion en todas los html que contienen una
 navBar.innerHTML += 
-`        
-<div class="container d-flex flex-column flex-md-row justify-content-between">
-<a class="py-2 d-none d-md-inline-block" href="index.html">Inicio</a>
-<a class="py-2 d-none d-md-inline-block" href="categories.html">Categorías</a>
-<a class="py-2 d-none d-md-inline-block" href="products.html">Productos</a>
-<a class="py-2 d-none d-md-inline-block" href="sell.html">Vender</a>
-<a class="py-2 d-none d-md-inline-block" href="cart.html">Mi carrito</a>
 
-<a class="py-2 d-none d-md-inline-block" href=""><img id="loguser"src="img/loguser.png" alt="">`+user+`</a>
+`<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample08" aria-controls="navbarsExample08" aria-expanded="false" aria-label="Toggle navigation">
+  <span class="navbar-toggler-icon"></span>
+</button>
+
+<div class="collapse navbar-collapse justify-content-md-center" id="navbarsExample08">
+  <ul class="navbar-nav">
+    <li class="nav-item active">
+      <a class="nav-link" href="index.html">Inicio <span class="sr-only">(current)</span></a>
+    </li>
+    <li class="nav-item active">
+    <a class="nav-link" href="categories.html">Categorías<span class="sr-only">(current)</span></a>
+  </li>
+  <li class="nav-item active">
+  <a class="nav-link" href="products.html">Productos <span class="sr-only">(current)</span></a>
+</li>
+<li class="nav-item active">
+<a class="nav-link" href="sell.html">Vender <span class="sr-only">(current)</span></a>
+</li>
+<li class="nav-item active">
+<a class="nav-link" href="#">Mi carrito <span class="sr-only">(current)</span></a>
+</li>
+
+    
+    
+  </ul>
+ 
 </div>
-`
+<a class="py-2 d-flex d-md-inline-block" href=""><img id="loguser"src="img/loguser.png" alt="">`+user+`</a>
+</nav>`
+
+// `        
+// <div class="container d-flex flex-column flex-md-row justify-content-between">
+// <a class="py-2 d-none d-md-inline-block" href="index.html">Inicio</a>
+// <a class="py-2 d-none d-md-inline-block" href="categories.html">Categorías</a>
+// <a class="py-2 d-none d-md-inline-block" href="products.html">Productos</a>
+// <a class="py-2 d-none d-md-inline-block" href="sell.html">Vender</a>
+// <a class="py-2 d-none d-md-inline-block" href="cart.html">Mi carrito</a>
+
+// <a class="py-2 d-none d-md-inline-block" href=""><img id="loguser"src="img/loguser.png" alt="">`+user+`</a>
+// </div>
+// `
 });

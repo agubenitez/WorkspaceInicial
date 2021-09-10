@@ -13,73 +13,158 @@
   <link href="css/font-awesome.min.css" rel="stylesheet">
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
+  <link href="css/product-info.css" rel="stylesheet">
 </head>
 
 <body>
   <nav id="nav" class="site-header sticky-top py-1 bg-dark">
-   
+
   </nav>
   <div class="container">
     <!-- Titulo -->
     <div class="row">
-      <div class="col-4 "></div>
-      <div class="col-4 m-5">
-        <h1>Chevrolet Onix Joy</h1>
-      </div>      
-      <div class="col-4 "></div>
+      <div class="col-3 "></div>
+      <div id="tituloName" class="col-6 m-5">
+    
+      </div>
+      <div class="col-3 "></div>
     </div>
 
     <!-- imagen costo y descripcion -->
 
     <div class="row">
-
+      <!-- Imagenes -->
       <div class="col-6">
-        <img class="img-fluid max-width:100% " src="img/prod1.jpg" alt="">
+        <!-- <img class="img-fluid max-width:100% " src="img/prod1.jpg" alt=""> -->
+
+        <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+          <div id="carousel-images" class="carousel-inner">
+            <!-- DOM -->
+          </div>
+          <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
+        </div>
       </div>
 
-      <div class="col-6">
-        <div class="row ">
-
-          <p>Lorem, ipsum dolor sit amet consectetur adip
-            isicing elit. Nobis quasi p
-            erferendis earum cupiditate r
-            eiciendis enim eaque aut iure beat
-                       ae, delectus, aliquam odit recu
-                       sandae. Quia cumque placeat ad sed. Voluptate, accusamus!</p>
-       
+      <!-- Descripcion precio e info adicional -->
+      <div class="col-6 rounded bg-light">
 
 
+        <div class="d-flex align-items-end flex-column bd-highlight " style="height: 100%;">
+          <div id="description" class="p-2  bd-highlight ">
+          </div>
+        
+          <div  class=" d-flex mt-auto p-2 bd-highlight">
+            
+
+            <div id="cost"  style="font-size:22px">
+
+
+            </div>
+            <div>
+              <button type="button" class="btn btn-warning ml-3">COMPRAR</button>
+            </div>
+
+            <!-- cost -->
+          </div> 
+        
+
+          <!-- info -->
+          <div  class="p-2 bd-highlight">
+
+            <div class="row">
+
+             <p id="parrafoVendidos" class="mr-3" >
+               <!-- soldcount -->
+             </p>
+             
+            <p id="parrafoCategory" class="mr-3"> 
+              <!-- category -->
+            </p> 
+          
+          </div>
+          </div>
+         
         </div>
-        <div class="row align-items-end">
-          <h1>Descripcion</h1>  
-          <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nobis quae, error aperiam dolores quisquam iure labore
-            illum unde eligendi! Voluptatem sed possimus dicta molestias rem porro deserunt perspiciatis sapiente tenetur.</p>
-        </div>
+
       </div>
 
     </div>
+    <!-- FIN DE PRODUCTO -->
+<!-- COMENTARIOS -->
 
-  </div>
-  <footer class="text-muted">
-    <div class="container">
-      <p class="float-right">
-        <a href="#">Volver arriba</a>
+<div id="rowComentarios" class="row mt-5">
+  
+
+ 
+</div>
+
+    
+    <!-- DEJAR COMENTARIO -->
+<div class="row mt-5">
+ 
+<div class="ml-3 col">
+  <div class="row">
+    <h4 class="mt-1">Agustin:</h4>
+    <form>
+      <p class="clasificacion ml-2">
+        <input id="radio1" type="radio" name="estrellas" value="5"><!--
+        --><label for="radio1">★</label><!--
+        --><input id="radio2" type="radio" name="estrellas" value="4"><!--
+        --><label for="radio2">★</label><!--
+        --><input id="radio3" type="radio" name="estrellas" value="3"><!--
+        --><label for="radio3">★</label><!--
+        --><input id="radio4" type="radio" name="estrellas" value="2"><!--
+        --><label for="radio4">★</label><!--
+        --><input id="radio5" type="radio" name="estrellas" value="1"><!--
+        --><label for="radio5">★</label>
       </p>
-      <p>Este sitio forma parte de Desarrollo Web - JAP - 2020</p>
-    </div>
-  </footer>
-  <div id="spinner-wrapper">
-    <div class="lds-ring">
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-    </div>
+    </form>
   </div>
-  <script src="js/jquery-3.4.1.min.js"></script>
-  <script src="js/bootstrap.bundle.min.js"></script>
-  <script src="js/init.js"></script>
-  <script src="js/product-info.js"></script>
+  <div class="row">
+    <div class="input-group">
+      <textarea class="form-control" aria-label="With textarea" placeholder="En mi opinion este producto es...."></textarea>
+      <div class="input-group-append">
+        <button class="btn btn-outline-secondary" id="buttonEnviar">ENVIAR</button>
+      </div>
+    </div>
+ 
+  </div>
+
+
+</div>
+
+<div class="col"></div>
+  
+</div> 
+<!-- Fin DEJAR COMENTARIO -->
+  </div>
+    <footer class="text-muted">
+      <div class="container">
+        <p class="float-right">
+          <a href="#">Volver arriba</a>
+        </p>
+        <p>Este sitio forma parte de Desarrollo Web - JAP - 2020</p>
+      </div>
+    </footer>
+    <div id="spinner-wrapper">
+      <div class="lds-ring">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/init.js"></script>
+    <script src="js/product-info.js"></script>
 </body>
 
 </html>

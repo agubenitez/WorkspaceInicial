@@ -77,7 +77,7 @@ function showProductsList() {
       //se agrega a la variable htmlContentToAppend el codigo HTML
     //este codigo contiene los datos del producto desglosados en una lista
     htmlContentToAppend += `
-           <a href="" class="list-group-item list-group-item-action">
+           <a href="product-info.html" class="list-group-item list-group-item-action">
                <div class="row">
                <div class="col-3">
                         <img src="` + products.imgSrc + `" class="img-thumbnail">
