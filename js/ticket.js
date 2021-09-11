@@ -84,7 +84,7 @@ var burguers = [
 
 function imprimir() {
     
-    showTicket()
+
     window.print();
 }
 
@@ -218,10 +218,11 @@ document.addEventListener("DOMContentLoaded", function(e){
       });
 
       document.getElementById("nuevo").addEventListener("click", function () {
-       // currentTicket=[]
+        registro = currentTicket;
+        currentTicket=[]
         tbody.innerHTML = ""
         trTotal.innerHTML = ""
-        showTicket()
+
   
       });
 
