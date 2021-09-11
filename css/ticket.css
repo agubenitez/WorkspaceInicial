@@ -49,6 +49,10 @@ img {
 .sinCss{
     all: none;
 }
+.pedido{
+    display:grid;
+    margin:5%;
+}
 
 @media print {
     .oculto-impresion,

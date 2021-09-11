@@ -2,8 +2,7 @@
 <html>
     <head>
         <link rel="stylesheet" href="css/ticket.css">
-        <link href="css/bootstrap.min.css" rel="stylesheet">
-    </head>
+        </head>
     <body>
         <!-- TICKET -->
         <div class="ticket ">
@@ -47,56 +46,37 @@
         </div>
         <!-- FIN TICKET -->
 
+
 <!-- CREAR TICKET -->
+<div>
 <button class="oculto-impresion" onclick="imprimir()">Imprimir</button>
-<button id="nuevo">Nuevo ticket</button>
-
-
-
-
-<div class=" conteiner  oculto-impresion">
-    <div class="row mt-5">
-<div class="col">
-    <h3>Nuevo Pedido:</h3>
+<button class="oculto-impresion" id="nuevo">Nuevo ticket</button>
+<button class="oculto-impresion" id="ultimo">Ultimo Ticket</button>
 </div>
+<div class="oculto-impresion" style="display: inline-flex;margin-top: 4%;">
+  
+    <div  class="pedido">
+    <span style="font-size:16px">ID BURGUER:</span>
+    <input style="height: 20px;" id="idProd" type="text">
+    <textarea id="inputNotas" class="form-control" aria-label="With textarea" placeholder="NOTAS..."></textarea>
+    <button id="agregar">Agregar</button>
+    </div>
+
+   <div  class="pedido">
+
+    <span style="font-size:16px">DIRECCION:</span>
+    <input id="inputDir" type="text"> <button id="botonDir">Agregar</button>
 </div>
-<div class="row">
-    <div class="col border">
-        <span style="font-size:16px">ID BURGUER:</span>
-        <input id="idProd" type="text">
-    </p>
-    <p>
-     <textarea id="inputNotas" class="form-control" aria-label="With textarea" placeholder="NOTAS..."></textarea>
-     <button id="agregar">Agregar</button>
-    </p>
-    </div>
-    <div class="col border">
-        <p>
-            <span style="font-size:16px">DIRECCION:</span>
-            <input id="inputDir" type="text"> <button id="botonDir">Agregar</button>
-    
-        </p>
 
-    </div>
-   
-    <div class="col border">
-        <p>
-            <span style="font-size:16px">TELEFONO:</span>
-            <input id="inputTelefono" type="text"> <button id="botonTelefono">Agregar</button>
-           </p>
-    </div>
-   <div class="col border">
-
-    <p> <span style="font-size:16px">NOMBRE:</span>
-        <input id="inputNombre" type="text"> <button id="botonNombre">Agregar</button>
-       </p>
-
-   </div>
-   
-
-    
-
+<div class="pedido" >  
+<span style="font-size:16px">TELEFONO:</span>
+    <input id="inputTelefono" type="text"> <button id="botonTelefono">Agregar</button>
+</div>   
+<div class="pedido" > 
+    <span style="font-size:16px">NOMBRE:</span>
+    <input id="inputNombre" type="text"> <button id="botonNombre">Agregar</button>
 </div>
+
 </div>
 
 <!-- FIN CREAR TICKET -->

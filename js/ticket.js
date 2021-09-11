@@ -2,6 +2,7 @@ const tbody = document.getElementById("tbody");
 const dire = document.getElementById("dire");
 const trTotal = document.getElementById("total")
 var currentTicket = [];
+var registro = []
 var cant=1;
 var burguers = [
     {
@@ -11,6 +12,7 @@ var burguers = [
         "cost": 245,
         "costInterface": 245,
         "currency": "$"
+       
        
     },
     {
@@ -81,20 +83,62 @@ var burguers = [
 ]
 
 function imprimir() {
+    
+    showTicket()
     window.print();
 }
+
+
+    
+
+function showTicket(){
+  
+let htmlContentToAppend = "";
+for (let i = 0; i < currentTicket.length; i++) {
+    let ticket = currentTicket[i]; 
+htmlContentToAppend +=
+`
+    <tr>
+    <td class="cantidad">`+ cant + `</td>
+    <td class="producto">`+ticket.name+`   <br> `+ticket.burguer.notas+`  </td>
+
+    <td class="precio">`+ticket.burguer.currency+ticket.burguer.cost+`</td>
+    </tr>
+
+`
+}
+
+tbody.innerHTML = htmlContentToAppend;
+total = sumarTotal(currentTicket)
+
+trTotal.innerHTML = `                    
+<td></td>
+<td>TOTAL</td>
+<td id="total">$`+total+`</td>`
+
+}
+//fin show ticket
+
+
+
 
 function agregarProd(id, notas) {
     if(notas==undefined){
     notas=""
     }
     console.log(notas)
+
 let htmlContentToAppend = "";
 var precioTotal;
+
 for (let i = 0; i < burguers.length; i++) {
     let burguer = burguers[i]; 
 
- if(burguer.id === id){  
+    if(burguer.id === id){ 
+   
+         currentTicket.push({notas,burguer})
+               console.log(currentTicket)
+
 htmlContentToAppend += 
 `
     <tr>
@@ -106,7 +150,6 @@ htmlContentToAppend +=
 
 `
 
-currentTicket.push(burguer)
 }
 
 
@@ -118,14 +161,15 @@ trTotal.innerHTML = `
 <td></td>
 <td>TOTAL</td>
 <td id="total">$`+total+`</td>`
-console.log(currentTicket)
-}//fin agregar prod
+
+}
+//fin agregar prod
 
 function sumarTotal(array){
 var total=0
     for (let i = 0; i < array.length; i++) {
         var a = array[i]
-        var costo = parseInt(a.cost)
+        var costo = parseInt(a.burguer.cost)
         total = total + costo
 
         if(a.id == "descuento"){
@@ -169,14 +213,16 @@ document.addEventListener("DOMContentLoaded", function(e){
             inputNotas=""
             }
         agregarProd(idProd,inputNotas)
+      
  
       });
 
       document.getElementById("nuevo").addEventListener("click", function () {
-        currentTicket=[]
+       // currentTicket=[]
         tbody.innerHTML = ""
         trTotal.innerHTML = ""
- 
+        showTicket()
+  
       });
 
       document.getElementById("botonDir").addEventListener("click", function () {
