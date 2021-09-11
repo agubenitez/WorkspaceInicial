@@ -1,9 +1,24 @@
 const tbody = document.getElementById("tbody");
 const dire = document.getElementById("dire");
 const trTotal = document.getElementById("total")
+var parrafoDir = document.getElementById("parrafoDir");
+var parrafoNombre = document.getElementById("parrafoNombre");
+var parrafoTelefono = document.getElementById("parrafoTelefono");
+var divCliente = document.getElementById("divCliente");
+var currentDire = "";
+var currentTel = "";
+var currentNombre = ""
+var currentCliente =
+{
+    "nombre": "",
+    "direccion": "",
+    "telefono": "",
+}
+
 var currentTicket = [];
-var registro = []
-var cant=1;
+var ultimoTicket = []
+var cant = 1;
+var regNum = 0;
 var burguers = [
     {
         "name": "Ant-Man",
@@ -12,8 +27,8 @@ var burguers = [
         "cost": 245,
         "costInterface": 245,
         "currency": "$"
-       
-       
+
+
     },
     {
         "name": "Hukl",
@@ -73,48 +88,111 @@ var burguers = [
     },
     {
         "name": "15% de descuento!!!",
-        "id": "descuento",
+        "id": "d",
         "description": "",
         "cost": 0,
         "costInterface": "- 15% !!! ",
         "currency": "$"
     },
-    
+
 ]
 
 function imprimir() {
-    
-
+    saveTicket(currentTicket)
     window.print();
 }
 
+function showLastTicket(ultimoTicket) {
 
-    
 
-function showTicket(){
-  
-let htmlContentToAppend = "";
-for (let i = 0; i < currentTicket.length; i++) {
-    let ticket = currentTicket[i]; 
-htmlContentToAppend +=
-`
+
+
+
+    // parrafoNombre.appendChild(ultimoTicket[ultimoTicket.length-1].nombre)
+    // parrafoTelefono.appendChild(ultimoTicket[ultimoTicket.length-1].telefono)
+    let htmlContentToAppend = ""
+    //voy hasta el length -1 porque en la ultima posicion esta el cliente
+    //los datos del cliente estan en: ultimoTicket.[length-1]
+
+    for (let i = 0; i < ultimoTicket.length - 1; i++) {
+        let ticket = ultimoTicket[i];
+
+        htmlContentToAppend +=
+            `
+            <tr>
+            <td class="cantidad">`+ cant + `</td>
+            <td class="producto">`+ ticket.burguer.name + `   <br> ` + ticket.notas + `  </td>
+
+            <td class="precio">`+ ticket.burguer.currency + ticket.burguer.cost + `</td>
+            </tr>
+
+        `
+    }
+
+    tbody.innerHTML = htmlContentToAppend;
+    total = sumarTotalUltimo(ultimoTicket)
+
+    trTotal.innerHTML = `
+        <td></td>
+        <td>TOTAL</td>
+        <td id="total">$`+ total + `</td>`
+
+//cliente
+let cliente = ultimoTicket[ultimoTicket.length-1]
+
+        document.getElementById("divCliente").innerHTML = `
+
+        <p id="parrafoDir" class="centrado">`+ cliente.currentCliente.direccion.data+`
+        </p>
+       <p id="parrafoNombre" class="centrado">
+       `+ cliente.currentCliente.nombre.data+`
+        </p>
+       <p id="parrafoTelefono" class="centrado">
+       `+ cliente.currentCliente.telefono.data+`    </p>`
+
+}
+
+function sumarTotalUltimo(array) {
+    var total = 0
+    for (let i = 0; i < array.length - 1; i++) {
+        var a = array[i]
+        var costo = parseInt(a.burguer.cost)
+        total = total + costo
+
+        if (a.id == "descuento") {
+            total -= a.cost
+            total = Math.round(total * 0.85)
+        }
+    }
+    return (total);
+
+}
+
+
+function showTicket() {
+
+    let htmlContentToAppend = "";
+    for (let i = 0; i < currentTicket.length; i++) {
+        let ticket = currentTicket[i];
+        htmlContentToAppend +=
+            `
     <tr>
     <td class="cantidad">`+ cant + `</td>
-    <td class="producto">`+ticket.name+`   <br> `+ticket.burguer.notas+`  </td>
+    <td class="producto">`+ ticket.name + `   <br> ` + ticket.burguer.notas + `  </td>
 
-    <td class="precio">`+ticket.burguer.currency+ticket.burguer.cost+`</td>
+    <td class="precio">`+ ticket.burguer.currency + ticket.burguer.cost + `</td>
     </tr>
 
 `
-}
+    }
 
-tbody.innerHTML = htmlContentToAppend;
-total = sumarTotal(currentTicket)
+    tbody.innerHTML = htmlContentToAppend;
+    total = sumarTotal(currentTicket)
 
-trTotal.innerHTML = `                    
+    trTotal.innerHTML = `
 <td></td>
 <td>TOTAL</td>
-<td id="total">$`+total+`</td>`
+<td id="total">$`+ total + `</td>`
 
 }
 //fin show ticket
@@ -123,131 +201,157 @@ trTotal.innerHTML = `
 
 
 function agregarProd(id, notas) {
-    if(notas==undefined){
-    notas=""
+    if (notas == undefined) {
+        notas = ""
     }
     console.log(notas)
 
-let htmlContentToAppend = "";
-var precioTotal;
+    let htmlContentToAppend = "";
+    var precioTotal;
 
-for (let i = 0; i < burguers.length; i++) {
-    let burguer = burguers[i]; 
+    for (let i = 0; i < burguers.length; i++) {
+        let burguer = burguers[i];
 
-    if(burguer.id === id){ 
-   
-         currentTicket.push({notas,burguer})
-               console.log(currentTicket)
+        if (burguer.id === id) {
 
-htmlContentToAppend += 
-`
+            currentTicket.push({ notas, burguer })
+            console.log(currentTicket)
+
+            htmlContentToAppend +=
+                `
     <tr>
     <td class="cantidad">`+ cant + `</td>
-    <td class="producto">`+burguer.name+`   <br> `+notas+`  </td>
+    <td class="producto">`+ burguer.name + `   <br> ` + notas + `  </td>
 
-    <td class="precio">`+burguer.currency+burguer.cost+`</td>
+    <td class="precio">`+ burguer.currency + burguer.cost + `</td>
     </tr>
 
 `
 
-}
+        }
 
 
-}
-tbody.innerHTML += htmlContentToAppend;
-total = sumarTotal(currentTicket)
+    }
+    tbody.innerHTML += htmlContentToAppend;
+    total = sumarTotal(currentTicket)
 
-trTotal.innerHTML = `                    
+    trTotal.innerHTML = `
 <td></td>
 <td>TOTAL</td>
-<td id="total">$`+total+`</td>`
+<td id="total">$`+ total + `</td>`
 
 }
 //fin agregar prod
 
-function sumarTotal(array){
-var total=0
+function sumarTotal(array) {
+    var total = 0
     for (let i = 0; i < array.length; i++) {
         var a = array[i]
         var costo = parseInt(a.burguer.cost)
         total = total + costo
 
-        if(a.id == "descuento"){
+        if (a.id == "descuento") {
             total -= a.cost
             total = Math.round(total * 0.85)
         }
     }
     return (total);
-    
+
 }
 
 
 
-function cofirmar(){
+
+
+function cofirmar() {
     for (let i = 0; i < currentTicket.length; i++) {
         let tick = currentTicket[i];
         costo = tick.cost
         console.log(costo)
-    
-        precioTotal+=costo
+
+        precioTotal += costo
         console.log(precioTotal)
-    
+
     }
-    
+
     console.log(currentTicket)
-    htmlContentToAppend += 
-    `
+    htmlContentToAppend +=
+        `
         <tr>
         <td class="total">`+ precioTotal + `</td>
         </tr>
     `
 }
 
+function saveTicket(ticket) {
+    ultimoTicket = ticket;
+    ultimoTicket.push({ currentCliente })
+    regNum++
+    localStorage.setItem(regNum, JSON.stringify(ultimoTicket));
+}
 
-document.addEventListener("DOMContentLoaded", function(e){
+document.addEventListener("DOMContentLoaded", function (e) {
 
     document.getElementById("agregar").addEventListener("click", function () {
-        idProd= document.getElementById("idProd").value
+        idProd = document.getElementById("idProd").value
         inputNotas = document.getElementById("inputNotas").value
-        if(inputNotas==undefined){
-            inputNotas=""
-            }
-        agregarProd(idProd,inputNotas)
-      
- 
-      });
+        if (inputNotas == undefined) {
+            inputNotas = ""
+        }
+        agregarProd(idProd, inputNotas)
 
-      document.getElementById("nuevo").addEventListener("click", function () {
-        registro = currentTicket;
-        currentTicket=[]
+
+    });
+
+    document.getElementById("nuevo").addEventListener("click", function () {
+
+        currentTicket = []
+  
         tbody.innerHTML = ""
         trTotal.innerHTML = ""
+       parrafoDir.innerHTML = ""
+        parrafoNombre.innerHTML = ""
+        parrafoTelefono.innerHTML = ""
 
-  
-      });
 
-      document.getElementById("botonDir").addEventListener("click", function () {
-        document.getElementById("parrafoDir").innerHTML = '';
-        var dire = document.getElementById("parrafoDir");
+
+    });
+
+    document.getElementById("botonDir").addEventListener("click", function () {
+    //    document.getElementById("parrafoDir").innerHTML = "";
         var direccion = document.createTextNode(document.getElementById("inputDir").value)
-        dire.appendChild(direccion)
-        
-      });
-      document.getElementById("botonNombre").addEventListener("click", function () {
-        document.getElementById("parrafoNombre").innerHTML = '';
-        var parrafo = document.getElementById("parrafoNombre");
+        parrafoDir.appendChild(direccion)
+        currentCliente.direccion = direccion;
+
+
+    });
+    document.getElementById("botonNombre").addEventListener("click", function () {
+        // document.getElementById("parrafoNombre").innerHTML = '';
+
         var contenido = document.createTextNode(document.getElementById("inputNombre").value)
-        parrafo.appendChild(contenido)
+        parrafoNombre.appendChild(contenido)
         console.log(contenido)
-        
-      });
-      document.getElementById("botonTelefono").addEventListener("click", function () {
-        document.getElementById("parrafoTelefono").innerHTML = '';
-        var dire = document.getElementById("parrafoTelefono");
-        var direccion = document.createTextNode(document.getElementById("inputTelefono").value)
-        dire.appendChild(direccion)
-        
-      });
-   
+        currentCliente.nombre = contenido;
+
+    });
+    document.getElementById("botonTelefono").addEventListener("click", function () {
+        // document.getElementById("parrafoTelefono").innerHTML = '';
+
+        var telefono = document.createTextNode(document.getElementById("inputTelefono").value)
+        parrafoTelefono.appendChild(telefono)
+        currentCliente.telefono = telefono;
+
+    });
+    document.getElementById("botonUltimoTicket").addEventListener("click", function () {
+        showLastTicket(ultimoTicket);
+    });
+
+
+
+
 
 });
+
+
+
+/// ultimoTicket[ultimoTicket.length-1].currentCliente.nombre
