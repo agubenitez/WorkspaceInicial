@@ -198,8 +198,6 @@ function showTicket() {
 //fin show ticket
 
 
-
-
 function agregarProd(id, notas) {
     if (notas == undefined) {
         notas = ""
@@ -233,7 +231,7 @@ function agregarProd(id, notas) {
 
     }
     tbody.innerHTML += htmlContentToAppend;
-    total = sumarTotal(currentTicket)
+   let total = sumarTotal(currentTicket)
 
     trTotal.innerHTML = `
 <td></td>
@@ -306,13 +304,11 @@ document.addEventListener("DOMContentLoaded", function (e) {
     document.getElementById("nuevo").addEventListener("click", function () {
 
         currentTicket = []
-  
         tbody.innerHTML = ""
         trTotal.innerHTML = ""
-       parrafoDir.innerHTML = ""
+        parrafoDir.innerHTML = ""
         parrafoNombre.innerHTML = ""
         parrafoTelefono.innerHTML = ""
-
 
 
     });
@@ -343,7 +339,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
 
     });
     document.getElementById("botonUltimoTicket").addEventListener("click", function () {
-        showLastTicket(ultimoTicket);
+       // showLastTicket(ultimoTicket);
     });
 
 
