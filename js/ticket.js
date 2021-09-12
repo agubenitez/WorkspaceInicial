@@ -88,7 +88,7 @@ var burguers = [
     },
     {
         "name": "15% de descuento!!!",
-        "id": "d",
+        "id": "descuento",
         "description": "",
         "cost": 0,
         "costInterface": "- 15% !!! ",
