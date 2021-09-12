@@ -258,31 +258,9 @@ function sumarTotal(array) {
 }
 
 
-
-
-
-function cofirmar() {
-    for (let i = 0; i < currentTicket.length; i++) {
-        let tick = currentTicket[i];
-        costo = tick.cost
-        console.log(costo)
-
-        precioTotal += costo
-        console.log(precioTotal)
-
-    }
-
-    console.log(currentTicket)
-    htmlContentToAppend +=
-        `
-        <tr>
-        <td class="total">`+ precioTotal + `</td>
-        </tr>
-    `
-}
-
 function saveTicket(ticket) {
-    ultimoTicket = ticket;
+    ultimoTicket = []
+    ultimoTicket.push ({ticket});
     ultimoTicket.push({ currentCliente })
     regNum++
     localStorage.setItem(regNum, JSON.stringify(ultimoTicket));
