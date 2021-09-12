@@ -104,10 +104,6 @@ function imprimir() {
 
 function showLastTicket(ultimoTicket) {
 
-
-
-
-
     // parrafoNombre.appendChild(ultimoTicket[ultimoTicket.length-1].nombre)
     // parrafoTelefono.appendChild(ultimoTicket[ultimoTicket.length-1].telefono)
     let htmlContentToAppend = ""
@@ -121,9 +117,9 @@ function showLastTicket(ultimoTicket) {
             `
             <tr>
             <td class="cantidad">`+ cant + `</td>
-            <td class="producto">`+ ticket.burguer.name + `   <br> ` + ticket.notas + `  </td>
+            <td class="producto">`+ ticket.name + `   <br> ` + ticket.notas + `  </td>
 
-            <td class="precio">`+ ticket.burguer.currency + ticket.burguer.cost + `</td>
+            <td class="precio">`+ ticket.currency + ticket.cost + `</td>
             </tr>
 
         `
@@ -156,7 +152,7 @@ function sumarTotalUltimo(array) {
     var total = 0
     for (let i = 0; i < array.length - 1; i++) {
         var a = array[i]
-        var costo = parseInt(a.burguer.cost)
+        var costo = parseInt(a.cost)
         total = total + costo
 
         if (a.id == "descuento") {
@@ -282,6 +278,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
     document.getElementById("nuevo").addEventListener("click", function () {
 
         currentTicket = []
+        currentCliente = []
         tbody.innerHTML = ""
         trTotal.innerHTML = ""
         parrafoDir.innerHTML = ""
@@ -317,7 +314,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
 
     });
     document.getElementById("botonUltimoTicket").addEventListener("click", function () {
-       // showLastTicket(ultimoTicket);
+     //  showLastTicket(ultimoTicket);
     });
 
 
