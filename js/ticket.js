@@ -88,7 +88,7 @@ var burguers = [
     },
     {
         "name": "15% de descuento!!!",
-        "id": "descuento",
+        "id": "d",
         "description": "",
         "cost": 0,
         "costInterface": "- 15% !!! ",
@@ -160,7 +160,7 @@ function sumarTotalUltimo(array) {
         total = total + costo
 
         if (a.id == "descuento") {
-            total -= a.cost
+            
             total = Math.round(total * 0.85)
         }
     }
@@ -250,8 +250,8 @@ function sumarTotal(array) {
         var costo = parseInt(a.burguer.cost)
         total = total + costo
 
-        if (a.burguer.id == "descuento") {
-            total -= a.burguer.cost
+        if (a.burguer.id == "d") {
+            
             total = Math.round(total * 0.85)
         }
     }
