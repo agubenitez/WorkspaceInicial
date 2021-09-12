@@ -98,15 +98,11 @@ var burguers = [
 ]
 
 function imprimir() {
-    saveTicket(currentTicket)
+   saveTicket(currentTicket)
     window.print();
 }
 
 function showLastTicket(ultimoTicket) {
-
-
-
-
 
     // parrafoNombre.appendChild(ultimoTicket[ultimoTicket.length-1].nombre)
     // parrafoTelefono.appendChild(ultimoTicket[ultimoTicket.length-1].telefono)
@@ -204,20 +200,12 @@ function agregarProd(id, notas) {
     if (notas == undefined) {
         notas = ""
     }
-    console.log(notas)
-
     let htmlContentToAppend = "";
-    var precioTotal;
-
     for (let i = 0; i < burguers.length; i++) {
-        let burguer = burguers[i];
-
-        if (burguer.id === id) {
-
-            currentTicket.push({ notas, burguer })
-            console.log(currentTicket)
-
-            htmlContentToAppend +=
+      let burguer = burguers[i];
+      if (burguer.id === id) {
+        currentTicket.push({ notas, burguer })
+        htmlContentToAppend +=
                 `
     <tr>
     <td class="cantidad">`+ cant + `</td>
@@ -226,15 +214,11 @@ function agregarProd(id, notas) {
     <td class="precio">`+ burguer.currency + burguer.cost + `</td>
     </tr>
 
-`
-
-        }
-
+`       }
 
     }
     tbody.innerHTML += htmlContentToAppend;
-    total = sumarTotal(currentTicket)
-
+    let total = sumarTotal(currentTicket)
     trTotal.innerHTML = `
 <td></td>
 <td>TOTAL</td>
@@ -259,32 +243,9 @@ function sumarTotal(array) {
 
 }
 
-
-
-
-
-function cofirmar() {
-    for (let i = 0; i < currentTicket.length; i++) {
-        let tick = currentTicket[i];
-        costo = tick.cost
-        console.log(costo)
-
-        precioTotal += costo
-        console.log(precioTotal)
-
-    }
-
-    console.log(currentTicket)
-    htmlContentToAppend +=
-        `
-        <tr>
-        <td class="total">`+ precioTotal + `</td>
-        </tr>
-    `
-}
-
 function saveTicket(ticket) {
-    ultimoTicket = ticket;
+    ultimoTicket = []
+    ultimoTicket.push ({ticket});
     ultimoTicket.push({ currentCliente })
     regNum++
     localStorage.setItem(regNum, JSON.stringify(ultimoTicket));
