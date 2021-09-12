@@ -250,8 +250,8 @@ function sumarTotal(array) {
         var costo = parseInt(a.burguer.cost)
         total = total + costo
 
-        if (a.id == "descuento") {
-            total -= a.cost
+        if (a.burguer.id == "descuento") {
+            total -= a.burguer.cost
             total = Math.round(total * 0.85)
         }
     }
