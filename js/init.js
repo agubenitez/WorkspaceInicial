@@ -40,6 +40,12 @@ var getJSONData = function(url){
     });
 }
 
+function logOut(){
+  localStorage.removeItem("user")
+  window.location = "index.html"
+}
+
+
 
 //evento que se ejecuta al cargar la pagina
 document.addEventListener("DOMContentLoaded", function(e){
@@ -69,18 +75,26 @@ navBar.innerHTML +=
 <li class="nav-item active">
 <a class="nav-link" href="sell.html">Vender <span class="sr-only">(current)</span></a>
 </li>
-<li class="nav-item active">
-<a class="nav-link" href="#">Mi carrito <span class="sr-only">(current)</span></a>
-</li>
+
 
     
     
   </ul>
  
 </div>
-<a class="py-2 d-flex d-md-inline-block" href=""><img id="loguser"src="img/loguser.png" alt="">`+user+`</a>
-</nav>`
+<div class="mr-5 dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+  `+user+`
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <a class="dropdown-item" href="#">Carrito</a>
+    <a class="dropdown-item" href="#">Perfil</a>
+    <a onclick="logOut()" class="dropdown-item" >Cerrar sesion</a>
+  </div>
+</div>
 
+</nav>`
+//<a class="mr-5 py-2 d-flex d-md-inline-block" href=""><img id="loguser"src="img/loguser.png" alt=""></a>
 // `        
 // <div class="container d-flex flex-column flex-md-row justify-content-between">
 // <a class="py-2 d-none d-md-inline-block" href="index.html">Inicio</a>

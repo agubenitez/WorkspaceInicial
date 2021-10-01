@@ -5,6 +5,10 @@ var cost = document.getElementById("cost")
 var parrafoCategory = document.getElementById("parrafoCategory")
 var parrafoVendidos = document.getElementById("parrafoVendidos")
 var tituloName = document.getElementById("tituloName")
+var cardGroup = document.getElementById("cardGroup")
+var products = [];
+var currentProductInfo=[];
+
 
 //Comentarios
 var rowComentarios = document.getElementById("rowComentarios")
@@ -16,10 +20,10 @@ var currentComments = [];
 //Funcion para mostrar en el html la informacion del producto
 //el producto se pasa por parametro
 //el producto es un objeto de tipo JSON
-function showProductInfo(currentProduct) {
+function showProductInfo() {
   //CREACION DEL CAROUSEL DE IMAGENES
     //las imagenes del producto estan guardadas en un array
-    images = currentProduct.images
+    images = currentProductInfo.images
     //descompongo el array con un for para obtener las imagenes individuales
     for (let i = 0; i < images.length; i++) {
       let img = images[i];
@@ -40,17 +44,45 @@ function showProductInfo(currentProduct) {
               </div>
              `
       }
+    }
     //FIN CARROUSEL
 
+    //PRODUCTOS RELACIONADOS
+    
+      
+
     //Desgloso el resto de la informacion del producto en el HTML en los lugares que ya tienen reservados
-    tituloName.innerHTML = `<h1  style="font-weight:800">` + currentProduct.name + `</h1>`
-    cost.innerHTML = `<p>` + currentProduct.currency + +currentProduct.cost + `</p>`
-    description.innerHTML = `<p>` + currentProduct.description + `</p>`
-    parrafoCategory.innerHTML = `Categoria: <a href="category-info.html">` + currentProduct.category + `</a>`
-    parrafoVendidos.innerHTML = `Vendidos: ` + currentProduct.soldCount + ``
+    tituloName.innerHTML = `<h1  style="font-weight:800">` + currentProductInfo.name + `</h1>`
+    cost.innerHTML = `<p>` + currentProductInfo.currency + +currentProductInfo.cost + `</p>`
+    description.innerHTML = `<p>` + currentProductInfo.description + `</p>`
+    parrafoCategory.innerHTML = `Categoria: <a href="category-info.html">` + currentProductInfo.category + `</a>`
+    parrafoVendidos.innerHTML = `Vendidos: ` + currentProductInfo.soldCount + ``
 
   }
-}
+
+  function showRelateds(){
+    
+    relateds = currentProductInfo.relatedProducts;
+
+    for (let i = 0; i < relateds.length; i++) {
+      let related = relateds[i];
+        cardGroup.innerHTML += `
+        <div class="card">
+        <a class="badge badge-secondary" href="">
+        <img src="`+products[related].imgSrc+`" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">`+products[related].name+`</h5>
+          <p class="card-text">`+products[related].description+`</p>
+          <p class="card-text">`+products[related].currency+``+products[related].cost+`</p>
+         </div>
+      </a>
+     </div>
+     
+
+              `
+    }
+  }
+
 
 //COMENTARIOS
   //esta funcion muestra los comentarios que estan en el JSON PRODUCT_INFO_COMMENTS_URL
@@ -230,7 +262,15 @@ function newComment(textComment, user) {
 document.addEventListener("DOMContentLoaded", function (e) {
   getJSONData(PRODUCT_INFO_URL).then(function (resultObj) {
     if (resultObj.status === "ok") { 
-      showProductInfo(resultObj.data);
+      currentProductInfo=resultObj.data
+      showProductInfo();
+    }
+  });
+  getJSONData(PRODUCTS_URL).then(function (resultObj) {
+    if (resultObj.status === "ok") { 
+      products = resultObj.data
+      showRelateds();
+
     }
   });
   getJSONData(PRODUCT_INFO_COMMENTS_URL).then(function (resultObj) {
