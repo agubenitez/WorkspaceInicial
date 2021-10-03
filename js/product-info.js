@@ -60,13 +60,17 @@ function showProductInfo() {
 
   }
 
+  //FUNCION QUE MUESTRA LOS PRODUCTOS RELACIONADOS A currentProductInfo 
   function showRelateds(){
-    
-    relateds = currentProductInfo.relatedProducts;
-
+    // defino una variable  "relateds" que contiene los index a los productos relacionados de currentProductInfo
+      relateds = currentProductInfo.relatedProducts;
+    //recorro la variable "relateds" para obtener cada index
     for (let i = 0; i < relateds.length; i++) {
+      //defino la variable "related" que corresponde al index individual por el que esta pasando el for
       let related = relateds[i];
-        cardGroup.innerHTML += `
+      //la variable product corresponde a un array con objetos, cada objeto corresponde a un producto
+      //En un espacio previamente reservado en el html "cardGroup" muestro el producto que se encuentra en la posicion correspondiente al valor de "related"
+      cardGroup.innerHTML += `
         <div class="card">
         <a class="badge badge-secondary" href="">
         <img src="`+products[related].imgSrc+`" class="card-img-top" alt="...">
@@ -77,9 +81,8 @@ function showProductInfo() {
          </div>
       </a>
      </div>
-     
-
-              `
+ 
+             `
     }
   }
 
