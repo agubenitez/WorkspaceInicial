@@ -39,12 +39,11 @@ var getJSONData = function(url){
         return result;
     });
 }
-
+// funcion que elimina el usuario del localstorage y redirecciona a la pantalla de login
 function logOut(){
   localStorage.removeItem("user")
   window.location = "index.html"
 }
-
 
 
 //evento que se ejecuta al cargar la pagina
@@ -80,9 +79,8 @@ navBar.innerHTML +=
     
     
   </ul>
- 
-</div>
-<div class="mr-5 dropdown">
+
+  <div class="ml-5 dropdown">
   <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
   `+user+`
   </button>
@@ -92,6 +90,9 @@ navBar.innerHTML +=
     <a onclick="logOut()" class="dropdown-item" >Cerrar sesion</a>
   </div>
 </div>
+ 
+</div>
+
 
 </nav>`
 //<a class="mr-5 py-2 d-flex d-md-inline-block" href=""><img id="loguser"src="img/loguser.png" alt=""></a>
