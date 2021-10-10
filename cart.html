@@ -11,23 +11,6 @@
 
   <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/album/">
   <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
-
-  <style>
-    .bd-placeholder-img {
-      font-size: 1.125rem;
-      text-anchor: middle;
-      -webkit-user-select: none;
-      -moz-user-select: none;
-      -ms-user-select: none;
-      user-select: none;
-    }
-
-    @media (min-width: 768px) {
-      .bd-placeholder-img-lg {
-        font-size: 3.5rem;
-      }
-    }
-  </style>
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
   <link href="css/dropzone.css" rel="stylesheet">
@@ -35,16 +18,44 @@
 
 <body>
   <nav id="nav" class="site-header sticky-top py-1 bg-dark">
-   
   </nav>
-  <div class="container p-5">
-    <div class="alert alert-danger" role="alert" style="position: relative; width:auto; top: 0;">
-      <h4 class="alert-heading">¡A trabajar! :)</h4>
-      <p>Esta sección corresponde a: Entrega 5 (Fecha de entrega: 17/10/2021) y Entrega 7 (Fecha de entrega: 14/11/2021).</p>
-      <hr>
-      <p class="mb-0">Para saber qué debes hacer, fijate en la actividad en CREA correspondiente a esta entrega.</p>
-    </div>
-  </div>
+  <div class="container p-5 mt-5 border bg-light">
+
+<h3>Carrito:</h3>
+
+    <div class="row border bg-white">
+     
+      <div class="col border p-5">
+        <ul>
+          <li style="display: block;
+          overflow: hidden;
+          padding: 10px 0;
+          margin-bottom: 10px;
+          border-bottom: 1px dashed rgb(150, 203, 233)">
+            <!-- IMAGEN -->
+            <img style="    width: 50px;
+            margin-right: 10px;
+            float: left;" src="img/tree1.jpg" alt="">
+            <!-- TITULO -->
+            <div>
+              <a href="">Pino de auto</a>
+            </div>
+            <!-- INFORMACION DEL PRODUCTO -->
+          <div style="float: left;">
+           UYU $100 
+           <br>
+           Cantidad: <input type="number" placeholder="1" step="1" min="0" max="99" id="number">
+           <br>
+           <strong>Subtotal: $100</strong>
+          </div>
+          </li>
+         
+          <strong style="float:right"> TOTAL: UYU400</strong>
+        </ul>
+         </div>
+  
+
+
   <div id="spinner-wrapper">
     <div class="lds-ring">
       <div></div>

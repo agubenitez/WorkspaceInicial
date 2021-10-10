@@ -1,3 +1,9 @@
+
+ul{
+  list-style: none;
+}
+
+
 .jumbotron, .card-body, .container, .site-header{
     font-family: 'Raleway', serif !important;
 }
