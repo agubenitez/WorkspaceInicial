@@ -1,8 +1,23 @@
-
+.cartListImg{  
+   width: 50px;
+  margin-right: 10px;
+  float: left
+}
+.cartList{
+          display: block;
+          overflow: hidden;
+          padding: 10px 0;
+          margin-bottom: 10px;
+          border-bottom: 1px dashed rgb(150, 203, 233);
+}
 ul{
   list-style: none;
 }
+a{
+  font-style: none;
+  color:black;
 
+}
 
 .jumbotron, .card-body, .container, .site-header{
     font-family: 'Raleway', serif !important;

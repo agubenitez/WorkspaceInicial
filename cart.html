@@ -13,7 +13,9 @@
   <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
+
   <link href="css/dropzone.css" rel="stylesheet">
+  <script src="js/cart.js"></script>
 </head>
 
 <body>
@@ -26,32 +28,18 @@
     <div class="row border bg-white">
      
       <div class="col border p-5">
-        <ul>
-          <li style="display: block;
-          overflow: hidden;
-          padding: 10px 0;
-          margin-bottom: 10px;
-          border-bottom: 1px dashed rgb(150, 203, 233)">
-            <!-- IMAGEN -->
-            <img style="    width: 50px;
-            margin-right: 10px;
-            float: left;" src="img/tree1.jpg" alt="">
-            <!-- TITULO -->
-            <div>
-              <a href="">Pino de auto</a>
-            </div>
-            <!-- INFORMACION DEL PRODUCTO -->
-          <div style="float: left;">
-           UYU $100 
-           <br>
-           Cantidad: <input type="number" placeholder="1" step="1" min="0" max="99" id="number">
-           <br>
-           <strong>Subtotal: $100</strong>
-          </div>
-          </li>
-         
-          <strong style="float:right"> TOTAL: UYU400</strong>
+
+
+        <ul id="cartListId">
+
+    
+        
         </ul>
+        <div id="totalDiv">
+        
+        </div>
+ 
+
          </div>
   
 
@@ -68,7 +56,7 @@
   <script src="js/bootstrap.bundle.min.js"></script>
   <script src="js/dropzone.js"></script>
   <script src="js/init.js"></script>
-  <script src="js/cart.js"></script>
+ 
 </body>
 
 </html>
