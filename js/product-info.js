@@ -263,17 +263,17 @@ function newComment(textComment, user) {
 
 //funcion que se ejecuta al cargar la pagina
 document.addEventListener("DOMContentLoaded", function (e) {
-  getJSONData(PRODUCT_INFO_URL).then(function (resultObj) {
-    if (resultObj.status === "ok") { 
-      currentProductInfo=resultObj.data
-      showProductInfo();
-    }
-  });
+ //se debe llamar al getJSONData de produc-info-url, dentro del getJSONData de product-url para asegurar que siempre vas a tener los datos de ambas urls
   getJSONData(PRODUCTS_URL).then(function (resultObj) {
     if (resultObj.status === "ok") { 
       products = resultObj.data
-      showRelateds();
-
+      getJSONData(PRODUCT_INFO_URL).then(function (resultObj) {
+        if (resultObj.status === "ok") { 
+          currentProductInfo=resultObj.data
+          showProductInfo();
+          showRelateds();
+        }
+      })
     }
   });
   getJSONData(PRODUCT_INFO_COMMENTS_URL).then(function (resultObj) {
