@@ -86,11 +86,17 @@ function sumarTotal(){
   //inicializo el total en 0
   var total = 0
   //recorro el array donde tengo los subtotales
-  for (let i = 0; i <subTotales.length; i++) {
-    //agrego y sumo cada subtotal al total
-   total += subTotales[i]
-   
+  total = subTotales.reduce(getSum);
+  function getSum (total2,num){
+    return total2 + num;
   }
+ console.log(total)
+
+  // for (let i = 0; i <subTotales.length; i++) {
+     //agrego y sumo cada subtotal al total
+ //  total += subTotales[i]
+   
+  // }
   //muestro el total en el html
   totalDiv.innerHTML = `<strong style="float:right">
   TOTAL: `+moneda+` `+total+`
