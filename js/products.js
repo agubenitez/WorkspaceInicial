@@ -77,23 +77,25 @@ function showProductsList() {
       //se agrega a la variable htmlContentToAppend el codigo HTML
     //este codigo contiene los datos del producto desglosados en una lista
     htmlContentToAppend += `
-           <a href="product-info.html" class="list-group-item list-group-item-action">
-               <div class="row">
-               <div class="col-3">
-                        <img src="` + products.imgSrc + `" class="img-thumbnail">
-                    </div>
-                   <div class="col">
-                       <div class="d-flex w-100 justify-content-between">
-                          <h4 class="mb-1">`+ products.name +`</h4>
-                         <small class="text-muted">` + products.soldCount + ` Vendidos</small>
-                       </div>
-                    <div class="d-flex w-100 justify-content-between">
-                      <p class="mb-1">` + products.description + `</p>
-                      <strong class="text-muted"> ` + products.currency + ` ` + products.cost + `</strong>
-                    </div>
-                   </div>
-               </div>
-           </a>
+    <div class="col-md-4">
+      <div class="card mb-4 shadow-sm">
+        <a href="product-info.html">   <img class="img-fluid" src="` + products.imgSrc + `" alt=""> </a>
+        <div class="card-body">
+          <h5 class="card-title">`+ products.name +`</h5>  
+        
+          <p class="card-text">` + products.description + `</p>
+          <div class="d-flex justify-content-between align-items-center">
+            <div class="btn-group">
+            <a href="product-info.html">  <button type="button" class="btn btn-sm btn-outline-secondary">View</button></a>
+            <small class="mt-2 ml-1" >` + products.soldCount + `  Vendidos</small>
+             </div>
+              
+                <p class="mt-3" > ` + products.currency + ` ` + products.cost + `</p>
+          </div>
+      </div>
+    </div>
+     </div>
+           
            `
   }
 }
@@ -205,3 +207,20 @@ document.addEventListener("DOMContentLoaded", function (e) {
 });
 
 
+// <a href="product-info.html" class="list-group-item list-group-item-action">
+//                <div class="row">
+//                <div class="col-3">
+//                         <img src="` + products.imgSrc + `" class="img-thumbnail">
+//                     </div>
+//                    <div class="col">
+//                        <div class="d-flex w-100 justify-content-between">
+//                           <h4 class="mb-1">`+ products.name +`</h4>
+//                          <small class="text-muted">` + products.soldCount + ` Vendidos</small>
+//                        </div>
+//                     <div class="d-flex w-100 justify-content-between">
+//                       <p class="mb-1">` + products.description + `</p>
+//                       <strong class="text-muted"> ` + products.currency + ` ` + products.cost + `</strong>
+//                     </div>
+//                    </div>
+//                </div>
+//            </a>
