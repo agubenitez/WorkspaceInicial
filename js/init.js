@@ -85,7 +85,7 @@ navBar.innerHTML +=
   </button>
   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
     <a class="dropdown-item" href="cart.html">Carrito</a>
-    <a class="dropdown-item" href="#">Perfil</a>
+    <a class="dropdown-item" href="my-profile.html">Perfil</a>
     <a onclick="logOut()" class="dropdown-item" >Cerrar sesion</a>
   </div>
 </div>
