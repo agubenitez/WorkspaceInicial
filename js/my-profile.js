@@ -1,13 +1,13 @@
 
 var imgenPerfil = document.getElementById("imagenPerfil");
-
 var datosPerfil = {
     Nombre:"",
     Apellido: '',
     Edad: '',
     Mail:'',
     Telefono:'',
-};
+}; 
+
 function mostrarFoto(){
    let files = document.getElementById("avatar").files
    let foto = files[0];
@@ -46,11 +46,13 @@ localStorage.setItem("datosPerfil",dataJson)
 }
 
 document.getElementById("avatar").addEventListener("change", function () {
- 
+ //FileReader es un objeto con el único porpósito de leer datos desde objetos de tipo Blob (por lo tanto File también).
     const reader = new FileReader();
+
     reader.addEventListener("load", ()=>{
         localStorage.setItem("imgPerfil",reader.result);
     })
+    //readAsDataURL(blob) – lee los datos binarios y los codifica como [Datos URIs] en base 64
     reader.readAsDataURL(this.files[0])
 
     let foto = this.files[0];
@@ -63,22 +65,26 @@ document.getElementById("avatar").addEventListener("change", function () {
 document.addEventListener("DOMContentLoaded", function (e) {
 
 //cargar la imagen desde localstorage
-
 var imgData = localStorage.getItem("imgPerfil")
 if(imgData){
  imgenPerfil.src = imgData
 }
- 
-   
-//obtengo los datos de perfil del localstorage   
+    
+//obtengo los datos de perfil del localstorage  
+
 var dataLocal=localStorage.getItem("datosPerfil")
-//convierto en objeto los datos y los guardo en la variable datosPerfil
-datosPerfil =JSON.parse(dataLocal)
-//Muestro los datos en los input
+if(dataLocal){
+    //convierto en objeto los datos y los guardo en la variable datosPerfil
+    datosPerfil = JSON.parse(dataLocal)
+    //Muestro los datos en los input
 document.getElementById("nombre").value = datosPerfil.Nombre 
- document.getElementById("apellido").value = datosPerfil.Apellido 
+document.getElementById("apellido").value = datosPerfil.Apellido 
 document.getElementById("edad").value =  datosPerfil.Edad 
- document.getElementById("mail").value  = datosPerfil.Mail
- document.getElementById("telefono").value  = datosPerfil.Telefono
+document.getElementById("mail").value  = datosPerfil.Mail
+document.getElementById("telefono").value  = datosPerfil.Telefono
+}
+
+
+
 
 });
