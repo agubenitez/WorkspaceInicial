@@ -49,29 +49,36 @@
         <ul id="cartListId">
         </ul>
         <div class="row">
+          <div class="col mr-2 mt-2">
+            <div  id="subTotalDiv">
+
+            </div>
+          </div>
+        </div>
+        <div class="row">
          
           <div class="col ml-5">
             <strong>Tipo de envio:</strong>
             <div class="form-check">
-              <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+              <input class="form-check-input" onclick="costoEnvio(0)" type="radio" name="flexRadioDefault" id="defRadio" checked>
               <label class="form-check-label" for="flexRadioDefault2">
                 Retiro en el local - Gratis
               </label>
             </div>
             <div class="form-check">
-              <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+              <input class="form-check-input" onclick="costoEnvio(1)" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
               <label class="form-check-label" for="flexRadioDefault1">
                Premium(2-5 dias) - Costo del 15% sobre el subtotal
               </label>
             </div>
             <div class="form-check">
-              <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+              <input class="form-check-input" onclick="costoEnvio(2)" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
               <label class="form-check-label" for="flexRadioDefault1">
                 Express(5-8 dias) - Costo del 7% sobre el subtotal
               </label>
             </div>
             <div class="form-check">
-              <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+              <input class="form-check-input"  onclick="costoEnvio(3)" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
               <label class="form-check-label" for="flexRadioDefault1">
                Standard(12-15 dias) - costo del 5% sobre el subtotal
               </label>

@@ -3,6 +3,7 @@ var currentCart =[];
 var currentSubTotal = 0
 var subTotales = []
 var total = 0;
+var subtotalTotal = 0
 
 var moneda = "UYU";
 
@@ -82,7 +83,7 @@ function showCart(){
 //FUNCION QUE SUMA LOS SUBTOTALES Y MUESTRA EL TOTAL EN EL HTML
 function sumarTotal(){
   //declaro una variable que contiene el div previamente preparado en el html para contener el total
-  var totalDiv = document.getElementById("totalDiv")
+  var subtotalDiv = document.getElementById("subTotalDiv")
   //inicializo el total en 0
   var total = 0
   //recorro el array donde tengo los subtotales
@@ -90,7 +91,9 @@ function sumarTotal(){
   function getSum (total2,num){
     return total2 + num;
   }
- console.log(total)
+
+
+  subtotalTotal = total
 
   // for (let i = 0; i <subTotales.length; i++) {
      //agrego y sumo cada subtotal al total
@@ -98,10 +101,38 @@ function sumarTotal(){
    
   // }
   //muestro el total en el html
-  totalDiv.innerHTML = `<strong style="float:right">
-  TOTAL: `+moneda+` `+total+`
+  subtotalDiv.innerHTML = `<strong style="float:right">
+  SUBTOTAL: `+moneda+` `+total+`
   </strong>   `
+  var totalDiv = document.getElementById("totalDiv")
+  totalDiv.innerHTML = `<strong style="float:right">
+TOTAL: `+moneda+` `+subtotalTotal+`
+</strong>   `
+document.getElementById("defRadio").checked = true;
 
+}
+function costoEnvio(envio){
+  var totalDiv = document.getElementById("totalDiv")
+  var  miTotal = 0
+  if (envio == 0){
+    
+    miTotal = subtotalTotal
+    }
+if (envio == 1){
+   
+miTotal = subtotalTotal + (subtotalTotal * 0.15)
+}
+if (envio == 2){
+ 
+  miTotal = subtotalTotal + (subtotalTotal * 0.07)
+  }
+  if (envio == 3){
+    
+    miTotal = subtotalTotal + (subtotalTotal * 0.05)
+    }
+totalDiv.innerHTML = `<strong style="float:right">
+TOTAL: `+moneda+` `+miTotal+`
+</strong>   `
 }
 
 //FUNCIONES PARA CAMBIAR DE MONEDA, CADA UNA CORRESPONDE A UN BOTON PREVIAMENTE CREADO EN EL HTML
