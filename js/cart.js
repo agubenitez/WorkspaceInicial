@@ -108,14 +108,17 @@ function sumarTotal(){
   totalDiv.innerHTML = `<strong style="float:right">
 TOTAL: `+moneda+` `+subtotalTotal+`
 </strong>   `
+
 document.getElementById("defRadio").checked = true;
+document.getElementById("dirEnvio").style.display="none"
 
 }
 function costoEnvio(envio){
   var totalDiv = document.getElementById("totalDiv")
   var  miTotal = 0
+  document.getElementById("dirEnvio").style.display="block"
   if (envio == 0){
-    
+    document.getElementById("dirEnvio").style.display="none"
     miTotal = subtotalTotal
     }
 if (envio == 1){
