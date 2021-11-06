@@ -92,20 +92,11 @@ function sumarTotal(){
     return total2 + num;
   }
 
-
   subtotalTotal = total
 
-  // for (let i = 0; i <subTotales.length; i++) {
-     //agrego y sumo cada subtotal al total
- //  total += subTotales[i]
-   
-  // }
-  //muestro el total en el html
-  subtotalDiv.innerHTML = `<strong style="float:right">
-  SUBTOTAL: `+moneda+` `+total+`
-  </strong>   `
+ //TOTAL POR DEFECTO
   var totalDiv = document.getElementById("totalDiv")
-  totalDiv.innerHTML = `<strong style="float:right">
+  totalDiv.innerHTML = `<strong>
 TOTAL: `+moneda+` `+subtotalTotal+`
 </strong>   `
 
@@ -116,26 +107,38 @@ document.getElementById("dirEnvio").style.display="none"
 function costoEnvio(envio){
   var totalDiv = document.getElementById("totalDiv")
   var  miTotal = 0
-  document.getElementById("dirEnvio").style.display="block"
+  var costoEnvio = 0
+//mostrar direccion de envio
+ 
+  document.getElementById("dirEnvio").style.display="flex"
+ 
   if (envio == 0){
     document.getElementById("dirEnvio").style.display="none"
     miTotal = subtotalTotal
     }
 if (envio == 1){
-   
-miTotal = subtotalTotal + (subtotalTotal * 0.15)
+costoEnvio = (subtotalTotal * 0.15)
+miTotal = subtotalTotal + costoEnvio
+
 }
 if (envio == 2){
- 
-  miTotal = subtotalTotal + (subtotalTotal * 0.07)
+  costoEnvio =  (subtotalTotal * 0.07)
+  miTotal = subtotalTotal + costoEnvio
   }
   if (envio == 3){
-    
-    miTotal = subtotalTotal + (subtotalTotal * 0.05)
+    costoEnvio =  (subtotalTotal * 0.05)
+    miTotal = subtotalTotal + costoEnvio
     }
-totalDiv.innerHTML = `<strong style="float:right">
+totalDiv.innerHTML = `<strong>
+SUBTOTAL: `+moneda+` `+subtotalTotal+`
+<br>
+ENVIO: `+moneda+` `+costoEnvio+`
+<br>
 TOTAL: `+moneda+` `+miTotal+`
+
 </strong>   `
+//scrollear la pagina hasta la direccion de envio
+location.href = "#dirEnvio"
 }
 
 //FUNCIONES PARA CAMBIAR DE MONEDA, CADA UNA CORRESPONDE A UN BOTON PREVIAMENTE CREADO EN EL HTML
