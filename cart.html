@@ -35,23 +35,20 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body">
+      <div id="modalBody" class="modal-body">
       
           <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+            <input onchange="payCredit()" class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
             <label class="form-check-label" for="inlineRadio1">Credito/Debito</label>
           </div>
           <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+            <input onchange="payBank()" class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
             <label class="form-check-label" for="inlineRadio2">Transferencia bancaria</label>
           </div>
-     <div id="payment" class="container ">
-          <div class="row">
-        
-         
-            </div>
-
-          </div>      
+    <div id="payment" class="container ">
+   
+    
+    </div>
         <!-- Fin del container -->
         
         </div>  
@@ -59,8 +56,7 @@
       </div>
      
     </div>
-  </div>
-</div>
+
 
 
   <div class="container p-5 mt-5 border bg-light">
@@ -138,10 +134,10 @@
           </div>
           
          <div class="col-md-6 mx-auto">
-            Calle: <input type="text">
+            Calle: <input id="calleEnvio" type="text">
           </div>
           <div class="col-md-6 mx-auto">
-            Numero: <input type="text">
+            Numero: <input id="numeroEnvio" type="text">
           </div>
           <div class="col-md-6 mx-auto">
             Esquina: <input type="text">
@@ -166,7 +162,7 @@
           <div class="col-md-4 ">
             
         <!-- Button trigger modal -->
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+            <button id="btnPagar" type="button" class="btn btn-primary" data-toggle="modal"  data-target="#exampleModal">
               Pagar</button>
 
           </div>

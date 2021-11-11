@@ -5,7 +5,29 @@ var subTotales = []
 var total = 0;
 var subtotalTotal = 0
 
+
 var moneda = "UYU";
+
+function btnPagar(e) {
+  let defRadio = document.getElementById("defRadio");
+  let calleEnvio = document.getElementById("calleEnvio");
+  let numeroEnvio = document.getElementById("numeroEnvio");
+  let btnPagar = document.getElementById("btnPagar");
+  var cantidades = document.getElementsByClassName("inputsCant")
+  for (let i = 0; i < cantidades.length; i++) {
+    let cant = cantidades[i]
+    if (cant.value == 0) {
+      e.stopPropagation()
+      alert("indique una cantidad mayor a 0 en los productos seleccionados")
+    }
+  }
+  if (!defRadio.checked) {
+    if (calleEnvio.value.length == 0 || numeroEnvio.value.length == 0) {
+      e.stopPropagation()
+      alert("indique una direccion de envio")
+    }
+  }
+}
 
 //fUNCION QUE MUESTRA LA LISTA DE ARTICULOS DEL CARRITO
 function showCart(){   
@@ -37,7 +59,7 @@ function showCart(){
  `+CartProduct.currency+``+CartProduct.unitCost+`
   <br>
   Cantidad:
-  <input id="`+i+`" onInput="subtotal(`+i+`,`+cost+`)" type="number" placeholder="1" step="1" min="0" max="99" value=`+CartProduct.count+`>
+  <input class="inputsCant" id="`+i+`" onInput="subtotal(`+i+`,`+cost+`)" type="number" placeholder="1" step="1" min="0" max="99" value=`+CartProduct.count+`>
   <br>
   <strong  id="`+i+`Sub" >
   Subtotal: `+moneda+` `+CartProduct.count*cost+` 
@@ -161,6 +183,52 @@ function pasarPeso(){
 
 }
 
+function payCredit(){
+  let paymentDiv = document.getElementById("payment")
+  paymentDiv.innerHTML = ` <div class="row mt-3">
+  <form>
+    <div class="form-row">
+      <div class="form-group col-md-8">
+        <label for="inputTitular">Nombre del titular</label>
+        <input type="text" class="form-control" id="inputTitular" required>
+      </div>
+      <div class="form-group col-md-4">
+        <label for="inputCVV">CVV</label>
+        <input type="text" class="form-control" id="inputDireccion" required>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-12 ">
+        <label for="inputCardNumber">Numero tarjeta</label>
+        <input type="text" class="form-control" id="inputCardNumber" required>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label>Fecha de vencimiento</label>
+        <div class="input-group">
+          <input type="number" placeholder="MM" name="" class="form-control" required>
+          <input type="number" placeholder="YY" name="" class="form-control" required>
+        </div>
+      </div>
+    </div>
+    <button  type="submit" onclick="confirmarPago()" class="btn btn-primary">CONFIRMAR PAGO</button>
+  </form>
+</div>`
+}
+
+function confirmarPago(){
+  let exampleModal = document.getElementById("exampleModal")
+  exampleModal.innerHTML =
+  `<div class="alert alert-success" role="alert">
+  <h4 class="alert-heading">¡Genial!</h4>
+  <p>Su pago se completo con exito</p>
+  <hr>
+  <p class="mb-0">Gracias por su compra :)</p>
+</div>`
+
+}
+
 //FUNCION QUE CONVIERTE EL COSTO A LA MONEDA INDICADA EN LA VARIABLE moneda
 // se pasa por parametro el costo y el currency actual y
 //devuelve el costo convertido a la moneda indicada en la variable "moneda"
@@ -181,5 +249,7 @@ document.addEventListener("DOMContentLoaded", function(e){
           showCart();
          }
     });
+
+    document.getElementById("btnPagar").addEventListener('click', btnPagar); 
 
 });
