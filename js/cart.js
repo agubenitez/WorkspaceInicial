@@ -183,9 +183,41 @@ function pasarPeso(){
 
 }
 
+function payBank(){
+  let paymentDiv = document.getElementById("payment")
+  paymentDiv.innerHTML = ``
+  paymentDiv.innerHTML = ` <div class="row mt-3">
+  <form>
+    <div class="form-row">
+    <div class="form-group "> <label for="Select Your Bank">
+    <h6>Select your Bank</h6>
+</label> <select class="form-control" id="selectBank" required>
+    <option value="" selected disabled>--Please select your Bank--</option>
+    <option>Banco Itaú Uruguay</option>
+    <option>Banco Santander</option>
+    <option>Banque Heritage.</option>
+    <option>BBVA</option>
+    <option>Citibank</option>
+    <option>HSBC Bank</option>
+    <option>Scotiabank Uruguay</option>
+ 
+</select> </div>
+    </div>
+
+    <div class="form-row">
+    <div class="form-group col-md-8">
+      <label for="inputTitular">Numero de cuenta</label>
+      <input type="text" class="form-control" id="inputTitular" required>
+    </div>
+    <button  type="submit" onclick="confirmarPagoBank()" class="btn btn-primary">CONFIRMAR PAGO</button>
+  </form>
+</div>`
+}
+
 function payCredit(){
   let paymentDiv = document.getElementById("payment")
-  paymentDiv.innerHTML = ` <div class="row mt-3">
+  paymentDiv.innerHTML = ``
+    paymentDiv.innerHTML = ` <div class="row mt-3">
   <form>
     <div class="form-row">
       <div class="form-group col-md-8">
@@ -194,7 +226,7 @@ function payCredit(){
       </div>
       <div class="form-group col-md-4">
         <label for="inputCVV">CVV</label>
-        <input type="text" class="form-control" id="inputDireccion" required>
+        <input type="text" class="form-control" id="inputCVV" required>
       </div>
     </div>
     <div class="form-row">
@@ -207,8 +239,8 @@ function payCredit(){
       <div class="form-group col-md-6">
         <label>Fecha de vencimiento</label>
         <div class="input-group">
-          <input type="number" placeholder="MM" name="" class="form-control" required>
-          <input type="number" placeholder="YY" name="" class="form-control" required>
+          <input type="number" placeholder="MM" name="" class="form-control" id="vencimientoM" required>
+          <input type="number" placeholder="YY" name="" class="form-control" id="vencimientoY" required>
         </div>
       </div>
     </div>
@@ -218,14 +250,40 @@ function payCredit(){
 }
 
 function confirmarPago(){
+
   let exampleModal = document.getElementById("exampleModal")
+  let inputTitular = document.getElementById("inputTitular").value
+  let inputCVV = document.getElementById("inputCVV").value
+  let inputCardNumber = document.getElementById("inputCardNumber").value
+  let vencimientoM = document.getElementById("vencimientoM").value
+  let vencimientoY = document.getElementById("vencimientoY").value
+  if(inputTitular.length != 0 && inputCVV.length != 0 && inputCardNumber.length != 0 && vencimientoM.length != 0 && vencimientoY.length != 0 ){
   exampleModal.innerHTML =
   `<div class="alert alert-success" role="alert">
-  <h4 class="alert-heading">¡Genial!</h4>
+  <h4 class="alert-heading">PAGO ACEPTADO</h4>
   <p>Su pago se completo con exito</p>
   <hr>
-  <p class="mb-0">Gracias por su compra :)</p>
+  <p class="mb-0">Gracias por su compra </p>
 </div>`
+  }
+
+
+}
+
+function confirmarPagoBank(){
+  let exampleModal = document.getElementById("exampleModal")
+  let selectBank = document.getElementById("selectBank").value
+  let inputTitular = document.getElementById("inputTitular").value
+ if(selectBank != "" && inputTitular.length != 0){
+
+  exampleModal.innerHTML =
+  `<div class="alert alert-success" role="alert">
+  <h4 class="alert-heading">PAGO ACEPTADO</h4>
+  <p>Su pago se completo con exito</p>
+  <hr>
+  <p class="mb-0">Gracias por su compra </p>
+</div>`
+  }
 
 }
 
