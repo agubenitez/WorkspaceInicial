@@ -4,8 +4,37 @@ var currentSubTotal = 0
 var subTotales = []
 var total = 0;
 var subtotalTotal = 0
+var calleEnvio = ""
+var numeroEnvio = ""
 
 var moneda = "UYU";
+var user = localStorage.getItem("user")
+
+//Enviar informacion al servidor local
+function sendToServer(datos){
+ let envio = total - subtotalTotal
+var data = { 
+    nombre : user, 
+    calleEnvio: calleEnvio,
+    numeroEnvio: numeroEnvio,
+    currency: moneda,
+    subtotal: subtotalTotal,
+    envio: envio,
+    total : total
+} 
+console.log(JSON.stringify(datos))
+console.log(JSON.stringify(data))
+fetch('http://localhost:3000/infoCompra', {
+  method: 'POST',
+  headers: {
+      'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({
+      user: data,
+      datosPago: datos
+  })
+});
+}
 
 
 //Funcion que calcula el costo de envio dependiendo el radioButton seleccionado
@@ -43,16 +72,18 @@ TOTAL: `+ moneda + ` ` + miTotal + `
 </strong>   `
   //scrollear la pagina hasta la direccion de envio
   location.href = "#dirEnvio"
+  total = miTotal
 }
 
 //Esta funcion valida que no haya campos vacios al apretar el boton pagar
 //si pasa las validaciones se abre el modal con las formas de pago
 function btnPagar(e) {
   let defRadio = document.getElementById("defRadio");
-  let calleEnvio = document.getElementById("calleEnvio");
-  let numeroEnvio = document.getElementById("numeroEnvio");
+  calleEnvio = document.getElementById("calleEnvio");
+  numeroEnvio = document.getElementById("numeroEnvio");
   let btnPagar = document.getElementById("btnPagar");
   var cantidades = document.getElementsByClassName("inputsCant")
+//validaciones 
   for (let i = 0; i < cantidades.length; i++) {
     let cant = cantidades[i]
     if (cant.value == 0) {
@@ -72,14 +103,13 @@ function btnPagar(e) {
     alert("EL CARRITO ESTA VACIO")
   }
 }
-
 //funcion que carga en el modal el formulario de pago con tarjeta de credito
 //esta funcion se ejecuta al seleccionar la forma de pago con tarjeta credito/debito
 function payCredit(){
   let paymentDiv = document.getElementById("payment")
   paymentDiv.innerHTML = ``
     paymentDiv.innerHTML = ` <div class="row mt-3">
-  <form>
+  <form method="POST">
     <div class="form-row">
       <div class="form-group col-md-8">
         <label for="inputTitular">Nombre del titular</label>
@@ -165,6 +195,15 @@ function confirmarPagoBank() {
   let exampleModal = document.getElementById("exampleModal")
   let selectBank = document.getElementById("selectBank").value
   let inputTitular = document.getElementById("inputTitular").value
+
+  var datosPago = {
+   Bank: selectBank,
+   Titular: inputTitular,
+  }
+
+//enviar al servidor
+sendToServer(datosPago)
+  //validaciones 
   if (selectBank != "" && inputTitular.length != 0) {
     exampleModal.innerHTML =
       `<div class="alert alert-success" role="alert">
@@ -183,6 +222,17 @@ function confirmarPago() {
   let inputCardNumber = document.getElementById("inputCardNumber").value
   let vencimientoM = document.getElementById("vencimientoM").value
   let vencimientoY = document.getElementById("vencimientoY").value
+
+  var datosPago = {
+    titular: inputTitular,
+    numeroTarjeta: inputCardNumber,
+    cvv: inputCVV,
+    vencimientoM: vencimientoM,
+    vencimientoY:vencimientoY
+  }
+  
+  sendToServer(datosPago)
+
   if (inputTitular.length != 0 && inputCVV.length != 0 && inputCardNumber.length != 0 && vencimientoM.length != 0 && vencimientoY.length != 0) {
     exampleModal.innerHTML =
       `<div class="alert alert-success" role="alert">
@@ -274,13 +324,14 @@ function subtotal(i,cost){
 function sumarTotal(){
   //declaro una variable que contiene el div previamente preparado en el html para contener el total
    //inicializo el total en 0
-  var total = 0
+  let miTotal = 0
   //recorro el array donde tengo los subtotales
-  total = subTotales.reduce(getSum);
+  miTotal = subTotales.reduce(getSum);
   function getSum (total2,num){
     return total2 + num;
   }
-  subtotalTotal = total
+  subtotalTotal = miTotal
+  total = subtotalTotal
  //TOTAL POR DEFECTO
   var totalDiv = document.getElementById("totalDiv")
   totalDiv.innerHTML = `<strong>
